@@ -311,10 +311,16 @@ view: addressable_bob_mockeddata {
     drill_fields: [detail*]
   }
 
-  measure: total_units{
+  measure: total_unit_price{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."LINE_CONTRACT_PRICE" * ${TABLE}."CONTRACT_UNITS" ;;
+  }
+
+  measure: avg_creative_size{
+    type: average
+    drill_fields: [detail*]
+    sql: ${TABLE}."CREATIVE_SIZE" ;;
   }
 
   # ----- Sets of fields for drilling ------
