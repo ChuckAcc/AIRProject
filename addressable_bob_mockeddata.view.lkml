@@ -311,6 +311,12 @@ view: addressable_bob_mockeddata {
     drill_fields: [detail*]
   }
 
+  measure: total_units{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."LINE_CONTRACT_PRICE" * ${TABLE}."CONTRACT_UNITS" ;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
