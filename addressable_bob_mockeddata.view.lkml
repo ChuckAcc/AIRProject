@@ -329,6 +329,15 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."CONTRACT_UNITS" ;;
   }
 
+  parameter: max_rank {
+    type: number
+  }
+
+  dimension: rank_limit {
+    type: number
+    sql: {% parameter max_rank %} ;;
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {
