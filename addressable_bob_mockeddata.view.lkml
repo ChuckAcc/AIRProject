@@ -338,7 +338,6 @@ view: addressable_bob_mockeddata {
     sql: {% parameter max_rank %} ;;
   }
 
-
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
