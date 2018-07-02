@@ -323,6 +323,13 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."CREATIVE_SIZE" ;;
   }
 
+  measure: total_contract_units{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."CONTRACT_UNITS" ;;
+  }
+
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
