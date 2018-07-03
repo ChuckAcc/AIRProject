@@ -329,6 +329,12 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."CONTRACT_UNITS" ;;
   }
 
+
+  measure: total_delivered_units{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."DELIVERED_UNITS" ;;
+  }
   parameter: max_rank {
     type: number
   }
