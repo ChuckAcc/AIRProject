@@ -315,14 +315,14 @@ view: addressable_bob_mockeddata {
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."LINE_CONTRACT_PRICE" * ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "0.000,,\" M\""
+    value_format: "0.00,,\" M\""
   }
 
   measure: total_suggested_price{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."SUGGESTED_PRICE"* ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "0.000,,\" M\""
+    value_format: "0.00,,\" M\""
   }
 
 
