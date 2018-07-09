@@ -317,6 +317,13 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."LINE_CONTRACT_PRICE" * ${TABLE}."CONTRACT_UNITS" ;;
   }
 
+  measure: total_suggested_price{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."SUGGESTED_PRICE"* ${TABLE}."CONTRACT_UNITS" ;;
+  }
+
+
   measure: avg_creative_size{
     type: average
     drill_fields: [detail*]
