@@ -337,7 +337,7 @@ view: addressable_bob_mockeddata {
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "$#,##0.0,,\" M\""
+    value_format: "#,##0.0,,\" M\""
   }
 
 
@@ -345,7 +345,7 @@ view: addressable_bob_mockeddata {
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."DELIVERED_UNITS" ;;
-    value_format: "$#,##0.0,,\" M\""
+    value_format: "#,##0.0,,\" M\""
   }
   parameter: max_rank {
     type: number
