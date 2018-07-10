@@ -89,6 +89,7 @@ view: addressable_bob_mockeddata {
   dimension: deal_id {
     type: string
     sql: ${TABLE}."DEAL_ID" ;;
+    drill_fields: [io_id, line_id]
   }
 
   dimension: deal_likelihood_pct {
