@@ -340,6 +340,18 @@ view: addressable_bob_mockeddata {
     value_format: "#,##0.0,,\" M\""
   }
 
+  measure: total_gross_contract_value{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."GROSS_CONTRACT_VALUE" ;;
+    value_format: "#,##0.0,,\" M\""
+  }
+  measure: total_net_contract_value{
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}."NET_CONTRACT_VALUE" ;;
+    value_format: "#,##0.0,,\" M\""
+  }
 
   measure: total_delivered_units{
     type: sum
