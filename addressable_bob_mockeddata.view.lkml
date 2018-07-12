@@ -368,6 +368,25 @@ view: addressable_bob_mockeddata {
     sql: {% parameter max_rank %} ;;
   }
 
+  parameter: dimension_to_aggregate {
+    type: unquoted
+    allowed_value: {
+      label: "Net Revenue"
+      value: "NET_CONTRACT_VALUE"
+    }
+    allowed_value: {
+      label: "Gross Revenue"
+      value: "GROSS_CONTRACT_VALUE"
+    }
+  }
+
+
+  measure: dynamic_revenue {
+    type: number
+    label_from_parameter: dimension_to_aggregate
+    sql: sum( ${TABLE}.{% parameter dimension_to_aggregate %});;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
