@@ -307,6 +307,41 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."UNIT_TYPE" ;;
   }
 
+  dimension: dayparts {
+    type: string
+    sql: ${TABLE}."Dayparts" ;;
+  }
+
+  dimension: deal_status {
+    type: string
+    sql: ${TABLE}."Deal Status" ;;
+  }
+
+  dimension: revenue_category_name {
+    type: string
+    sql: ${TABLE}."Revenue Category Name" ;;
+  }
+
+  dimension: network_type {
+    type: string
+    sql: ${TABLE}."Network Type" ;;
+  }
+
+  dimension: network {
+    type: string
+    sql: ${TABLE}."Network" ;;
+  }
+
+  dimension: marketplace {
+    type: string
+    sql: ${TABLE}."Marketplace" ;;
+  }
+
+  dimension: inventory_type {
+    type: string
+    sql: ${TABLE}."Inventory Type" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
