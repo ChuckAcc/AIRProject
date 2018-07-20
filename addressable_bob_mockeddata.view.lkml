@@ -420,7 +420,7 @@ view: addressable_bob_mockeddata {
     type: number
     label_from_parameter: dimension_to_aggregate
     sql: sum( ${TABLE}.{% parameter dimension_to_aggregate %});;
-    value_format: "$#,##0.0"
+    value_format: "$#,##0.00"
   }
 
   # ----- Sets of fields for drilling ------
