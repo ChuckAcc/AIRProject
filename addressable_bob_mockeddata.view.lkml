@@ -351,14 +351,14 @@ view: addressable_bob_mockeddata {
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."LINE_CONTRACT_PRICE" * ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "$#,##0.0"
+    value_format: "$#,##0.00"
   }
 
   measure: total_suggested_price{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."SUGGESTED_PRICE"* ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "$#,##0.0"
+    value_format: "$#,##0.00"
   }
 
 
@@ -372,27 +372,27 @@ view: addressable_bob_mockeddata {
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."CONTRACT_UNITS" ;;
-    value_format: "#,##0.0"
+    value_format: "#,##0"
   }
 
   measure: total_gross_contract_value{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."GROSS_CONTRACT_VALUE" ;;
-    value_format: "$#,##0.0"
+    value_format: "$#,##0.00"
   }
   measure: total_net_contract_value{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."NET_CONTRACT_VALUE" ;;
-    value_format: "$#,##0.0"
+    value_format: "$#,##0.00"
   }
 
   measure: total_delivered_units{
     type: sum
     drill_fields: [detail*]
     sql: ${TABLE}."DELIVERED_UNITS" ;;
-    value_format: "#,##0.0"
+    value_format: "#,##0"
   }
   parameter: max_rank {
     type: number
