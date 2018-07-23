@@ -19,17 +19,4 @@ explore: cs_network {}
 
 explore: mock_car_data {}
 
-explore: addressable_bob_mockeddata {
-  sql_preamble: CREATE FUNCTION date_to_string (VARCHAR, DATETIME)
-RETURNS VARCHAR
- STABLE
-AS $$
-  SELECT
-  CASE
-    WHEN LOWER($1) IN ('year') THEN TO_CHAR($2, 'YYYY')
-    WHEN LOWER($1) IN ('quarter', 'month') THEN TO_CHAR($2, 'YYYY-MM')
-    WHEN LOWER($1) IN ('week', 'day') THEN TO_CHAR($2, 'YYYY-MM-DD')
-    WHEN LOWER($1) IN ('hour', 'minute') THEN TO_CHAR($2, 'YYYY-MM-DD HH24:MI')
-  END
-$$ LANGUAGE sql;;
-}
+explore: addressable_bob_mockeddata {}
