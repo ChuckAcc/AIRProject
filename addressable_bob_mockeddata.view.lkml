@@ -439,22 +439,13 @@ view: addressable_bob_mockeddata {
     default_value: "Month"
   }
 
-#  dimension: dynamic_timeframe {
- #   type: date_time
-#    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
-#    label: "Deal Start Date"
-#    convert_tz: no
-#  }
-
   dimension: dynamic_timeframe {
-    type: string
-    sql:
-        CASE
-        WHEN {% parameter date_selector %} = 'Quarter' THEN ${deal_flight_start_quarter}
-        WHEN {% parameter date_selector %} = 'Month' THEN ${deal_flight_start_month}
-        WHEN {% parameter date_selector %} = 'Week' THEN ${deal_flight_start_week}
-        END ;;
+    type: date_time
+    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
+    label: "Deal Start Date"
+    convert_tz: no
   }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
