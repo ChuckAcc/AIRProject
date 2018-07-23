@@ -446,7 +446,7 @@ view: addressable_bob_mockeddata {
  # }
   dimension: dynamic_timeframe {
     type: date
-    sql: DATE_TRUNC({% parameter date_selector %}, ${deal_flight_start_date})) ;;
+    sql: DATE_TRUNC({% parameter date_selector %}, ${deal_flight_start_date}) ;;
     label: "Deal Start Date"
   }
   # ----- Sets of fields for drilling ------
