@@ -423,7 +423,7 @@ view: addressable_bob_mockeddata {
   }
 
   parameter: date_selector {
-    type: unquoted
+    type: string
     allowed_value: {
       label: "Quarter"
       value: "quarter"
@@ -436,16 +436,25 @@ view: addressable_bob_mockeddata {
       label: "Week"
       value: "week"
     }
+    default_value: "Month"
   }
+
+#  dimension: dynamic_timeframe {
+ #   type: date_time
+#    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
+#    label: "Deal Start Date"
+#    convert_tz: no
+#  }
 
   dimension: dynamic_timeframe {
-    type: date_time
-    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
-    label: "Deal Start Date"
-    convert_tz: no
+    type: string
+    sql:
+        CASE
+        WHEN {% parameter date_selector %} = 'Quarter' THEN ${deal_flight_start_quarter}
+        WHEN {% parameter date_selector %} = 'Month' THEN ${deal_flight_start_month}
+        WHEN {% parameter date_selector %} = 'Week' THEN ${deal_flight_start_week}
+        END ;;
   }
-
-
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
