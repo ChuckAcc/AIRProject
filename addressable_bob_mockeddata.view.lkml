@@ -415,12 +415,34 @@ view: addressable_bob_mockeddata {
     }
   }
 
-
   measure: dynamic_revenue {
     type: number
     label_from_parameter: dimension_to_aggregate
     sql: sum( ${TABLE}.{% parameter dimension_to_aggregate %});;
     value_format: "$#,##0.00"
+  }
+
+  parameter: date_selector {
+    type: unquoted
+    allowed_value: {
+      label: "Quarter"
+      value: "quarter"
+    }
+    allowed_value: {
+      label: "Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "Week"
+      value: "week"
+    }
+  }
+
+  dimension: date_trunc {
+    type: date_time
+    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America-New_York', ${deal_flight_start_raw})) ;;
+    group_label: "Date Selector"
+    convert_tz: no
   }
 
   # ----- Sets of fields for drilling ------
