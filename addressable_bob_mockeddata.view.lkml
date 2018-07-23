@@ -440,7 +440,7 @@ view: addressable_bob_mockeddata {
 
   dimension: date_trunc {
     type: date_time
-    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_raw})) ;;
+    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
     group_label: "Date Selector"
     convert_tz: no
   }
@@ -448,14 +448,22 @@ view: addressable_bob_mockeddata {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      deal_advertiser_name,
-      deal_buying_agency_name,
+      creative_format,
+      deal_id,
       current_revenue_owner_name,
+      deal_type,
+      deal_buying_agency_name,
+      deal_advertiser_name,
       line_product_name,
-      deal_name,
-      insertion_order_name,
       advertiser_industry_name,
-      line_name
+      deal_name,
+      deal_flight_start_date,
+      deal_flight_end_date,
+      creative_size,
+      contract_units,
+      gross_contract_value,
+      net_contract_value
+
     ]
   }
 }
