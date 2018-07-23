@@ -442,9 +442,9 @@ view: addressable_bob_mockeddata {
     type: string
     sql:
         CASE
-        WHEN {% parameter date_selector %} = 'Quarter' THEN ${deal_flight_start_quarter}
-        WHEN {% parameter date_selector %} = 'Month' THEN ${deal_flight_start_month}
-        WHEN{% parameter date_selector %} = 'Week' THEN ${deal_flight_start_week}
+        WHEN {% parameter date_selector %} = 'quarter' THEN ${deal_flight_start_quarter}
+        WHEN {% parameter date_selector %} = 'month' THEN ${deal_flight_start_month}
+        WHEN{% parameter date_selector %} = 'week' THEN ${deal_flight_start_week}
         END ;;
   }
 
