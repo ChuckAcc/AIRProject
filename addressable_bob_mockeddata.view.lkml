@@ -440,8 +440,9 @@ view: addressable_bob_mockeddata {
 
   dimension: dynamic_timeframe {
     type: date
-    sql: DATE_TRUNC({% parameter date_selector %}, ${deal_flight_start_date}) ;;
-    group_label: "Select Date View"
+    sql: DATE_TRUNC({% parameter date_selector %}, CONVERT_TIMEZONE('UTC', 'America/New_York', ${deal_flight_start_date})) ;;
+  group_label: "Date Picker"
+  convert_tz: no
   }
 
   # ----- Sets of fields for drilling ------
