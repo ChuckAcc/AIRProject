@@ -439,13 +439,9 @@ view: addressable_bob_mockeddata {
   }
 
   dimension: dynamic_timeframe {
-    type: string
-    sql:
-        CASE
-        WHEN {% parameter date_selector %} = 'quarter' THEN ${deal_flight_start_quarter}
-        WHEN {% parameter date_selector %} = 'month' THEN ${deal_flight_start_month}
-        WHEN {% parameter date_selector %} = 'week' THEN ${deal_flight_start_week}
-        END ;;
+    type: date
+    sql: DATE_TRUNC({% parameter date_selector %}, ${deal_flight_start_date}) ;;
+    group_label: "Select Date View"
   }
 
   # ----- Sets of fields for drilling ------
