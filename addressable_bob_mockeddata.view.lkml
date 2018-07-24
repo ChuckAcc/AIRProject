@@ -425,15 +425,15 @@ view: addressable_bob_mockeddata {
   parameter: date_selector {
     type: string
     allowed_value: {
-      label: "Quarter"
+      label: "Quarterly"
       value: "quarter"
     }
     allowed_value: {
-      label: "Month"
+      label: "Monthly"
       value: "month"
     }
     allowed_value: {
-      label: "Week"
+      label: "Weekly"
       value: "week"
     }
     default_value: "Month"
