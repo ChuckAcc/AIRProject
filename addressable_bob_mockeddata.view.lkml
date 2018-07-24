@@ -446,6 +446,15 @@ view: addressable_bob_mockeddata {
     convert_tz: no
   }
 
+  dimension: dynamic_timeframe2{
+    type: string
+    sql:    CASE
+        WHEN {% condition date_selector %} 'Quarter' {% endcondition %} THEN CAST(${deal_flight_start_quarter} AS varchar(120))
+        WHEN {% condition date_selector %} 'Month' {% endcondition %} THEN CAST(${deal_flight_start_month} AS varchar(120))
+        WHEN {% condition date_selector %} 'Week' {% endcondition %} THEN CAST(${deal_flight_start_week} AS varchar(120))
+        END ;;
+}
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
