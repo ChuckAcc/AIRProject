@@ -44,18 +44,18 @@ view: cs_network {
   measure: Total_Impressions {
     type: sum
     drill_fields: []
-    sql: sum(${TABLE}."IMPRESSIONS");;
+    sql: (${TABLE}."IMPRESSIONS");;
   }
 
   measure: Total_DVR_Impressions {
     type: sum
     drill_fields: []
-    sql: sum(${TABLE}."IMPRESSIONS_DVR");;
+    sql: (${TABLE}."IMPRESSIONS_DVR");;
   }
 
   measure: Total_Live_Impressions {
     type: sum
     drill_fields: []
-    sql: sum(${TABLE}."IMPRESSIONS_LIVE");;
+    sql: (${TABLE}."IMPRESSIONS_LIVE");;
   }
 }
