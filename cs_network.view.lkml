@@ -41,8 +41,21 @@ view: cs_network {
     sql: ${TABLE}."ORDERLINE" ;;
   }
 
-  measure: count {
-    type: count
+  measure: Total_Impressions {
+    type: sum
     drill_fields: []
+    sql: sum(${TABLE}."IMPRESSIONS");;
+  }
+
+  measure: Total_DVR_Impressions {
+    type: sum
+    drill_fields: []
+    sql: sum(${TABLE}."IMPRESSIONS_DVR");;
+  }
+
+  measure: Total_Live_Impressions {
+    type: sum
+    drill_fields: []
+    sql: sum(${TABLE}."LIVE_IMPRESSIONS");;
   }
 }
