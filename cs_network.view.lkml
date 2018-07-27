@@ -56,6 +56,6 @@ view: cs_network {
   measure: Total_Live_Impressions {
     type: sum
     drill_fields: []
-    sql: sum(${TABLE}."LIVE_IMPRESSIONS");;
+    sql: sum(${TABLE}."IMPRESSIONS_LIVE");;
   }
 }
