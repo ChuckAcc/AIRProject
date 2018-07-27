@@ -20,3 +20,5 @@ explore: cs_network {}
 explore: mock_car_data {}
 
 explore: addressable_bob_mockeddata {}
+
+explore: ars_summary {}
