@@ -59,7 +59,7 @@ view: ars_summary {
 
   dimension: Universe_Estimate  {
     type: number
-    sql: ${TABLE}.Universe_Estimate  ;;
+    sql: ${TABLE}.Universe_Estimate;;
   }
 
   dimension: Delivery_Indexed {
@@ -69,7 +69,7 @@ view: ars_summary {
 
   dimension: Reach2  {
     type: number
-    sql: ${TABLE}.Reach%  ;;
+    sql: ${TABLE}.Reach2  ;;
   }
 
   dimension: Ordered_Impressions {
