@@ -91,4 +91,14 @@ view: ars_summary {
     type: number
     sql: ${TABLE}.Frequency ;;
   }
+
+  measure: Total_Ordered_Impressions {
+    type: sum
+    sql: ${TABLE}.Ordered_Impressions ;;
+  }
+
+  measure: Total_Delivered_Impressions{
+    type: sum
+    sql: ${TABLE}.Delivered_Impressions ;;
+  }
  }
