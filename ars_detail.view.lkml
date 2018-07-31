@@ -68,7 +68,7 @@ view: ars_detail {
 
  dimension: type {
     type: string
-    sql: ${TABLE}."TYPE" ;;
+    sql: ${TABLE}."Type" ;;
   }
 
   measure: count {
