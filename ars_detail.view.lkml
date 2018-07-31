@@ -66,6 +66,11 @@ view: ars_detail {
     sql: ${TABLE}."REACH" ;;
   }
 
+ dimension: type {
+    type: string
+    sql: ${TABLE}."TYPE" ;;
+  }
+
   measure: count {
     type: count
      }
