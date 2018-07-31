@@ -14,8 +14,10 @@ view: ars_summary {
    }
 
   dimension: IO_ID {
+    primary_key:yes
     type: number
-    sql: ${TABLE}.IO_ID ;;
+    sql: ${TABLE}.IO_ID
+    ;;
   }
 
   dimension: IO_Name {
@@ -93,7 +95,7 @@ view: ars_summary {
   }
 
   measure: Total_Ordered_Impressions {
-    type: sum
+    type: sum_distinct
     sql: ${TABLE}.Ordered_Impressions ;;
   }
 
