@@ -100,7 +100,7 @@ view: ars_summary {
   }
 
   measure: Total_Delivered_Impressions{
-    type: sum
+    type: sum_distinct
     sql: ${TABLE}.Delivered_Impressions ;;
   }
  }
