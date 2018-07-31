@@ -77,7 +77,7 @@ view: ars_detail {
 
   measure: Total_Ordered_Impressions{
     type: sum
-    sql:  ${TABLE}."Ordered_IMPRESSIONS" ;;
+    sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
   }
 
   measure: avg_Frequency{
