@@ -89,4 +89,9 @@ view: ars_detail {
     type: average
     sql:  ${TABLE}."FREQUENCY"  ;;
   }
+  measure: total_reach{
+    type: sum
+    sql:  ${TABLE}."REACH"  ;;
+  }
+
 }
