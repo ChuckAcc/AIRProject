@@ -47,7 +47,7 @@ view: ars_summary {
   dimension: Concat_dates {
     type: string
     label: "Flight"
-    sql:  concat(${TABLE}.Flight_Start_Date),"-", (${TABLE}.Flight_End_Date);;
+    sql:  concat(${TABLE}.Flight_Start_Date,"-", ${TABLE}.Flight_End_Date);;
   }
 
   dimension: Deal_ID {
