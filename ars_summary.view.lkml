@@ -45,6 +45,12 @@ view: ars_summary {
     sql: ${TABLE}.Flight_End_Date ;;
   }
 
+  dimension: Concat_dates {
+    type: string
+    label: "Flight"
+    sql:  concat(${TABLE}.Flight_Start_Date),"-", ${TABLE}.Flight_End_Date);;
+  }
+
   dimension: Deal_ID {
     type: string
     sql: ${TABLE}.Deal_ID ;;
@@ -57,17 +63,21 @@ view: ars_summary {
 
   dimension: Universe_Estimate{
     type: number
+    label: "Target Universe"
     sql: ${TABLE}."Universe_Estimate ";;
   }
 
   dimension: Delivery_Indexed {
     type: number
-    value_format: "0.00%"
+    value_format: "0\%"
+    label: "Delivery Indexed to Booked Impressions"
     sql: ${TABLE}.Delivery_Indexed ;;
   }
 
   dimension: Reach2{
     type: number
+    value_format: "0\%"
+    label: "Reach"
     sql: ${TABLE}."Reach2"  ;;
   }
 
