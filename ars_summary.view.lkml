@@ -57,7 +57,7 @@ view: ars_summary {
 
   dimension: Universe_Estimate{
     type: number
-    sql: ${TABLE}."Universe_Estimate";;
+    sql: ${TABLE}."Universe_Estimate ";;
   }
 
   dimension: Delivery_Indexed {
