@@ -109,4 +109,14 @@ view: ars_summary {
     type: sum_distinct
     sql: ${TABLE}.Delivered_Impressions ;;
   }
+
+  measure: Total_Reach{
+    type: sum
+    sql: ${TABLE}.Reach ;;
+  }
+
+  measure: Total_Target_Est{
+    type: sum
+    sql: ${TABLE}."Universe_Estimate " ;;
+  }
  }
