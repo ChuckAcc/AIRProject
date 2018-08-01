@@ -68,7 +68,6 @@ view: ars_summary {
 
   dimension: Reach2{
     type: number
-    value_format: "0.00%"
     sql: ${TABLE}."Reach2"  ;;
   }
 
