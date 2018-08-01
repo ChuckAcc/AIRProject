@@ -1,8 +1,4 @@
 view: ars_summary {
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
   dimension: Advertiser_Name{
     type: string
     sql: ${TABLE}.Advertiser_Name ;;
@@ -59,18 +55,20 @@ view: ars_summary {
     sql: ${TABLE}.Target ;;
   }
 
-  dimension: Universe_Estimate  {
+  dimension: Universe_Estimate{
     type: number
     sql: ${TABLE}.Universe_Estimate;;
   }
 
   dimension: Delivery_Indexed {
     type: number
+    value_format: "0.00%"
     sql: ${TABLE}.Delivery_Indexed ;;
   }
 
-  dimension: Reach2  {
+  dimension: Reach2{
     type: number
+    value_format: "0.00%"
     sql: ${TABLE}.Reach2  ;;
   }
 
