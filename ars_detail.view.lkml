@@ -31,22 +31,27 @@ view: ars_detail {
     sql: ${TABLE}."DAYPART" ;;
   }
   dimension: daypart_custom_sort {
-    label: "Daypart Custom Sort"
+    label: "Daypart (Custom Sort)"
     case: {
       when: {
-        sql: ${TABLE}."DAYPART"='6a-8a Early Morning';;
+        sql: ${daypart}='6a-8a Early Morning';;
+        label: "6a-8a Early Morning"
         }
         when: {
-        sql: ${TABLE}."DAYPART"='8a-4p Day';;
+        sql: ${daypart}."DAYPART"='8a-4p Day';;
+        label: "8a-4p Day"
       }
         when: {
-          sql: ${TABLE}."DAYPART"='4p-8p Fringe';;
+          sql: ${daypart}."DAYPART"='4p-8p Fringe';;
+          label: "4p-8p Fringe"
         }
         when: {
-          sql: ${TABLE}."DAYPART"='8p-2a Prime';;
+          sql: ${daypart}."DAYPART"='8p-2a Prime';;
+          label: "8p-2a Prime"
         }
         when: {
-          sql: ${TABLE}."DAYPART"='2a-6a Overnight';;
+          sql: ${daypart}."DAYPART"='2a-6a Overnight';;
+          label: "2a-6a Overnight"
         }
   }
 }
