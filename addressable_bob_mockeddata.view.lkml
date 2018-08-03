@@ -446,6 +446,7 @@ view: addressable_bob_mockeddata {
     convert_tz: no
   }
 
+#below is not being used
   dimension: dynamic_timeframe2{
     type: string
     sql:    CASE
