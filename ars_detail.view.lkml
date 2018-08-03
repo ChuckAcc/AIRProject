@@ -34,19 +34,19 @@ view: ars_detail {
     label: "Daypart Custom Sort"
     case: {
       when: {
-        sql: ${TABLE}."DAYPART"="6a-8a Early Morning";;
+        sql: ${TABLE}."DAYPART"='6a-8a Early Morning';;
         }
         when: {
-        sql: ${TABLE}."DAYPART"="8a-4p Day";;
+        sql: ${TABLE}."DAYPART"='8a-4p Day';;
       }
         when: {
-          sql: ${TABLE}."DAYPART"="4p-8p Fringe";;
+          sql: ${TABLE}."DAYPART"='4p-8p Fringe';;
         }
         when: {
-          sql: ${TABLE}."DAYPART"="8p-2a Prime";;
+          sql: ${TABLE}."DAYPART"='8p-2a Prime';;
         }
         when: {
-          sql: ${TABLE}."DAYPART"="2a-6a Overnight";;
+          sql: ${TABLE}."DAYPART"='2a-6a Overnight';;
         }
   }
 }
