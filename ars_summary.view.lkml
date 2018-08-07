@@ -1,4 +1,6 @@
 view: ars_summary {
+  sql_table_name: PUBLIC.ARS_SUMMARY ;;
+
   dimension: Advertiser_Name{
     type: string
     sql: ${TABLE}.Advertiser_Name ;;
