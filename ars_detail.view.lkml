@@ -64,19 +64,19 @@ view: ars_detail {
         label: "1-10"
       }
       when: {
-        sql: ${frequency}=>11<20;;
+        sql: ${frequency}=>11 and ${frequency}<20;;
         label: "11-20"
       }
       when: {
-        sql: ${frequency}=>21<30;;
+        sql: ${frequency}=>21 and ${frequency}<30;;
         label: "21-30"
       }
       when: {
-        sql: ${frequency}=>31<40;;
+        sql: ${frequency}=>31 and ${frequency}<40;;
         label: "31-40"
       }
       when: {
-        sql: ${frequency}=>41<50;;
+        sql: ${frequency}=>41 and ${frequency}<50;;
         label: "41-50"
       }
     }
