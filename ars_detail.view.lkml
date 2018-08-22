@@ -29,6 +29,7 @@ view: ars_detail {
   dimension: daypart {
     type: string
     sql: ${TABLE}."DAYPART" ;;
+    drill_fields: [time]
   }
   dimension: daypart_custom_sort {
     label: "Daypart (Custom Sort)"
