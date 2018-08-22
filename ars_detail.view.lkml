@@ -56,32 +56,6 @@ view: ars_detail {
   }
 }
 
-  dimension: decile_test {
-    label: "decile (1)"
-    case: {
-      when: {
-        sql: ${frequency}=<10;;
-        label: "1-10"
-      }
-      when: {
-        sql: ${frequency}=>11 and ${frequency}<20;;
-        label: "11-20"
-      }
-      when: {
-        sql: ${frequency}=>21 and ${frequency}<30;;
-        label: "21-30"
-      }
-      when: {
-        sql: ${frequency}=>31 and ${frequency}<40;;
-        label: "31-40"
-      }
-      when: {
-        sql: ${frequency}=>41 and ${frequency}<50;;
-        label: "41-50"
-      }
-    }
-  }
-
   dimension: deal_id {
     type: string
     sql: ${TABLE}."DEAL_ID" ;;
@@ -129,8 +103,14 @@ view: ars_detail {
   measure: Total_Delivered_Impressions{
     type: sum
     sql:  ${TABLE}."DELIVERED_IMPRESSIONS" ;;
+    value_format: "#,##0"
   }
 
+  measure: Total_Delivered_ImpressionsPercent{
+    type: percent_of_total
+    sql:  ${TABLE}."DELIVERED_IMPRESSIONS" ;;
+    value_format: "0\%"
+  }
   measure: Total_Ordered_Impressions{
     type: sum
     sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
