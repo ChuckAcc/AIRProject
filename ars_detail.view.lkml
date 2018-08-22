@@ -38,19 +38,19 @@ view: ars_detail {
         label: "6a-8a Early Morning"
         }
         when: {
-        sql: ${daypart}."DAYPART"='8a-4p Day';;
+        sql: ${daypart}='8a-4p Day';;
         label: "8a-4p Day"
       }
         when: {
-          sql: ${daypart}."DAYPART"='4p-8p Fringe';;
+          sql: ${daypart}='4p-8p Fringe';;
           label: "4p-8p Fringe"
         }
         when: {
-          sql: ${daypart}."DAYPART"='8p-2a Prime';;
+          sql: ${daypart}='8p-2a Prime';;
           label: "8p-2a Prime"
         }
         when: {
-          sql: ${daypart}."DAYPART"='2a-6a Overnight';;
+          sql: ${daypart}='2a-6a Overnight';;
           label: "2a-6a Overnight"
         }
   }
