@@ -107,7 +107,7 @@ view: ars_detail {
   }
 
   measure: Total_Delivered_ImpressionsPercent{
-    type: number
+    type: percent_of_total
     sql:  ${Total_Delivered_Impressions}/${Total_Delivered_Impressions} ;;
     value_format: "0\%"
   }
