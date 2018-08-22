@@ -96,6 +96,11 @@ view: ars_detail {
     sql: ${TABLE}."Type" ;;
   }
 
+  dimension: time {
+    type: date_time
+    sql: ${TABLE}."Time" ;;
+  }
+
   measure: count {
     type: count
      }
