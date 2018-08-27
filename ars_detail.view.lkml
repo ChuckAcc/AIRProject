@@ -131,4 +131,29 @@ view: ars_detail {
     sql:  ${TABLE}."REACH"  ;;
   }
 
+  dimension: frequencyOutlier {
+    type: string
+    label: "Frequency Flag"
+    case: {
+      when: {
+        sql: ${frequency}>41;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${daypart}<41;;
+        label: "No"
+      }
+  }
+  }
+  parameter: freqOutlier {
+    type: string
+    allowed_value: {
+      label: "Yes"
+      value: "frequency"
+    }
+    allowed_value: {
+      label: "No"
+      value: "month"
+    }
+  }
 }
