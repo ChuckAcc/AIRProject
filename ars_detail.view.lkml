@@ -172,4 +172,27 @@ view: ars_detail {
       value: "month"
     }
   }
+
+
+  parameter: impressions_toggle {
+    type: unquoted
+    allowed_value: {
+      label: "Cumulative"
+      value: "delivered_impressions_runningTotal"
+    }
+    allowed_value: {
+      label: "Weekly"
+      value: "DELIVERED_IMPRESSIONS"
+    }
+    default_value: "Cumulative"
+  }
+
+  measure: dynamic_impressions {
+    type: number
+    label_from_parameter: impressions_toggle
+    sql: sum( ${TABLE}.{% parameter impressions_toggle %});;
+    value_format: "$#,##0.00"
+  }
+
+
 }
