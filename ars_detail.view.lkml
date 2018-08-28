@@ -194,8 +194,6 @@ view: ars_detail {
     ${Total_Delivered_Impressions}
     {% elsif impressions_toggle._parameter_value == 'delivered_impressions_runningTotal' %}
     ${delivered_impressions_runningTotal}
-    {% else %}
-    ${delivered_impressions_runningTotal}
     {% endif %};;
 }
 
