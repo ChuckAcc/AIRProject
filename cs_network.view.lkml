@@ -35,8 +35,10 @@ view: cs_network {
     type: string
     sql: ${TABLE}."NETWORK" ;;
     link: {
-      label: "{{value}} Analytics"
-      url: "/dashboards/thelook::channel_analytics?Channel%20Name={{ value | encode_uri }}"
+      label: "{{value}} Daily Impressions"
+      url: "/dashboards/49?Channel"
+
+     # /dashboards/thelook::channel_analytics?Channel%20Name={{ value | encode_uri }}"
       #icon_url: "http://www.looker.com/favicon.ico"
     }
   }
