@@ -34,14 +34,14 @@ view: cs_network {
   dimension: network {
     type: string
     sql: ${TABLE}."NETWORK" ;;
-    link: {
-      label: "{{value}} Daily Impressions"
-      url: "/dashboards/49?Channel"
+    #link: {
+    #  label: "{{value}} Daily Impressions"
+     # url: "/dashboards/49?Channel"
 
      # /dashboards/thelook::channel_analytics?Channel%20Name={{ value | encode_uri }}"
       #icon_url: "http://www.looker.com/favicon.ico"
     }
-  }
+
 
   dimension: orderline {
     type: string
