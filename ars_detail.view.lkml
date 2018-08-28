@@ -178,7 +178,7 @@ view: ars_detail {
     type: unquoted
     allowed_value: {
       label: "Cumulative"
-      value: "delivered_impressions_runningTotal" #"delivered_impressions_runningTotal"
+      value: "delivered_impressions_runningTotal"
     }
     allowed_value: {
       label: "Weekly"
@@ -190,9 +190,9 @@ view: ars_detail {
     type: number
     label_from_parameter: impressions_toggle
     sql:
-    {% if impressions_toggle._parameter_value == 'Weekly' %}
+    {% if impressions_toggle._parameter_value == 'DELIVERED_IMPRESSIONS' %}
     ${Total_Delivered_Impressions}
-    {% elsif impressions_toggle._parameter_value == 'Cumulative' %}
+    {% elsif impressions_toggle._parameter_value == 'delivered_impressions_runningTotal' %}
     ${delivered_impressions_runningTotal}
     {% else %}
     ${delivered_impressions_runningTotal}
