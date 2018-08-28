@@ -182,16 +182,9 @@ view: ars_detail {
     }
     allowed_value: {
       label: "Weekly"
-      value: "DELIVERED_IMPRESSIONS"
+      value: "Total_Delivered_Impressions"
     }
-    default_value: "Cumulative"
-  }
-
-  measure: dynamic_impressions {
-    type: number
-    label_from_parameter: impressions_toggle
-    sql: sum( ${TABLE}.{% parameter impressions_toggle %});;
-    value_format: "$#,##0.00"
+    default_value: "delivered_impressions_runningTotal"
   }
 
   measure: dynamic_impressionsV2 {
@@ -213,7 +206,7 @@ measure: dynamic_impressionsV3 {
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN ${delivered_impressions_runningTotal}
-            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
+            WHEN {% parameter impressions_toggle %} = 'Total_Delivered_Impressions'
                THEN ${Total_Delivered_Impressions}
             ELSE
                NULL
