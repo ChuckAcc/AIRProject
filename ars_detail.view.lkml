@@ -199,11 +199,11 @@ view: ars_detail {
     label_from_parameter: impressions_toggle
     sql:
     {% if impressions_toggle._parameter_value == 'Weekly' %}
-    sum${Total_Delivered_Impressions}
+    ${Total_Delivered_Impressions}
     {% elsif impressions_toggle._parameter_value == 'Cumulative' %}
-    running_total${Total_Delivered_Impressions}
+     ${delivered_impressions_runningTotal}
     {% else %}
-    running_total${Total_Delivered_Impressions}
+    ${delivered_impressions_runningTotal}
     {% endif %};;
 }
 
