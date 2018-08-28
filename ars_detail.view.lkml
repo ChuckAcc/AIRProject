@@ -131,6 +131,22 @@ view: ars_detail {
     sql:  ${TABLE}."REACH"  ;;
   }
 
+  measure: delivered_impressions_runningTotal{
+    type: running_total
+    sql:  ${TABLE}."DELIVERED_IMPRESSIONS" ;;
+    value_format: "#,##0"
+  }
+
+  measure: Reach_runningTotal{
+    type: running_total
+    sql:  ${TABLE}."REACH" ;;
+  }
+
+  measure: Reach_runningTotal_percent{
+    type: percent_of_total
+    sql:  ${TABLE}."REACH" ;;
+  }
+
   dimension: frequencyOutlier {
     type: string
     label: "Frequency Flag"
