@@ -186,18 +186,18 @@ view: ars_detail {
     }
   }
 
- # measure: dynamic_impressionsV2 {
-#    type: number
-#    label_from_parameter: impressions_toggle
-#    sql:
-#    {% if impressions_toggle._parameter_value == 'Weekly' %}
- #   ${Total_Delivered_Impressions}
-  #  {% elsif impressions_toggle._parameter_value == 'Cumulative' %}
-   #  ${delivered_impressions_runningTotal}
-  #  {% else %}
-   # ${delivered_impressions_runningTotal}
-    #{% endif %};;
-#}
+ measure: dynamic_impressionsV2 {
+    type: number
+    label_from_parameter: impressions_toggle
+    sql:
+    {% if impressions_toggle._parameter_value == 'Weekly' %}
+    ${Total_Delivered_Impressions}
+    {% elsif impressions_toggle._parameter_value == 'Cumulative' %}
+    ${delivered_impressions_runningTotal}
+    {% else %}
+    ${delivered_impressions_runningTotal}
+    {% endif %};;
+}
 
 measure: dynamic_impressionsV3 {
     type: number
