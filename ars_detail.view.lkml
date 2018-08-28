@@ -182,9 +182,8 @@ view: ars_detail {
     }
     allowed_value: {
       label: "Weekly"
-      value: "Total_Delivered_Impressions"
+      value: "'DELIVERED_IMPRESSIONS'"
     }
-    default_value: "delivered_impressions_runningTotal"
   }
 
   measure: dynamic_impressionsV2 {
@@ -206,7 +205,7 @@ measure: dynamic_impressionsV3 {
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN ${delivered_impressions_runningTotal}
-            WHEN {% parameter impressions_toggle %} = 'Total_Delivered_Impressions'
+            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
                THEN ${Total_Delivered_Impressions}
             ELSE
                NULL
