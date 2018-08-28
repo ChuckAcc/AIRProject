@@ -55,7 +55,7 @@ view: ars_summary {
   dimension: Deal_ID {
     type: string
     sql: ${TABLE}.Deal_ID ;;
-    drill_fields: [IO_ID]
+   # drill_fields: [IO_ID]
   }
 
   dimension: Target {
