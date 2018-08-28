@@ -50,19 +50,19 @@ view: cs_network {
 
   measure: Total_Impressions {
     type: sum
-    drill_fields: []
+
     sql: (${TABLE}."IMPRESSIONS");;
   }
 
   measure: Total_DVR_Impressions {
     type: sum
-    drill_fields: []
+
     sql: (${TABLE}."IMPRESSIONS_DVR");;
   }
 
   measure: Total_Live_Impressions {
     type: sum
-    drill_fields: []
+
     sql: (${TABLE}."IMPRESSIONS_LIVE");;
   }
 }
