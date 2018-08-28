@@ -178,7 +178,7 @@ view: ars_detail {
     type: unquoted
     allowed_value: {
       label: "Cumulative"
-      value: "delivered_impressions_runningTotal"
+      value: "DELIVERED_IMPRESSIONS" #"delivered_impressions_runningTotal"
     }
     allowed_value: {
       label: "Weekly"
@@ -193,6 +193,19 @@ view: ars_detail {
     sql: sum( ${TABLE}.{% parameter impressions_toggle %});;
     value_format: "$#,##0.00"
   }
+
+  measure: dynamic_impressionsV2 {
+    type: number
+    label_from_parameter: impressions_toggle
+    sql:
+    {% if impressions_toggle._parameter_value == 'Cumulative' %}
+    running_total${Total_Delivered_Impressions}
+    {% elsif impressions_toggle._parameter_value == 'Weekly' %}
+    sum${Total_Delivered_Impressions}
+    {% else %}
+    ${Total_Delivered_Impressions}
+    {% endif %};;
+}
 
 
 }
