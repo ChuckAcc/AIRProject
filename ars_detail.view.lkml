@@ -106,7 +106,7 @@ view: ars_detail {
     type: string
     sql:  CASE
     WHEN
-    (${ars_detail.frequency}<=10 THEN "1-10"
+    (${ars_detail.frequency}<=10 THEN '1-10'
     WHEN
     (${ars_detail.frequency}>=11 AND ${ars_detail.frequency}<=20 THEN '11-20'
     WHEN
