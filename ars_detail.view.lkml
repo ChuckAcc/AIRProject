@@ -108,13 +108,13 @@ view: ars_detail {
     WHEN
     (${ars_detail.frequency}<=10 THEN "1-10"
     WHEN
-    (${ars_detail.frequency}>=11 AND ${ars_detail.frequency}<=20 THEN "11-20"
+    (${ars_detail.frequency}>=11 AND ${ars_detail.frequency}<=20 THEN '11-20'
     WHEN
-    (${ars_detail.frequency}>=21 AND ${ars_detail.frequency}<=30 THEN "21-30"
+    (${ars_detail.frequency}>=21 AND ${ars_detail.frequency}<=30 THEN '21-30'
     WHEN
-    (${ars_detail.frequency}>=31 AND ${ars_detail.frequency}<=40 THEN "31-40"
+    (${ars_detail.frequency}>=31 AND ${ars_detail.frequency}<=40 THEN '31-40'
     WHEN
-    (${ars_detail.frequency}>=41 AND ${ars_detail.frequency}<=50 THEN "41-50"
+    (${ars_detail.frequency}>=41 AND ${ars_detail.frequency}<=50 THEN '41-50'
     ELSE NULL
     END;;
   }
