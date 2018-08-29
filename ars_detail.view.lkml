@@ -204,9 +204,9 @@ measure: dynamic_impressionsV3 {
     type: number
     label_from_parameter: impressions_toggle
     sql: CASE
-            WHEN {% parameter impressions_toggle %} = "'delivered_impressions_runningTotal'"
+            WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN (${delivered_impressions_runningTotal})
-            WHEN {% parameter impressions_toggle %} = "'DELIVERED_IMPRESSIONS'"
+            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
                THEN (${Total_Delivered_Impressions})
             ELSE
                NULL
