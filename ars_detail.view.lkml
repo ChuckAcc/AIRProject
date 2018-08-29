@@ -55,6 +55,7 @@ view: ars_detail {
           label: "2a-6a Overnight"
         }
   }
+  drill_fields: [time]
 }
 
   dimension: deal_id {
