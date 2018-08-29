@@ -233,10 +233,12 @@ measure: dynamic_impressionsV3 {
   dimension: daypartHourlyDim {
     type: string
     label_from_parameter: daypart_vs_hourly
-    sql: {% if daypart_vs_hourly.parameter_value =='daypart' %}
-          ${daypart}
-          {% elsif daypart_vs_hourly.parameter_value =='Time' %}
-          ${time}
+    sql: {% if daypart_vs_hourly.parameter_value =="'daypart'" %}
+          ${daypart}::VARCHAR
+          {% elsif daypart_vs_hourly.parameter_value =="'Time'" %}
+          ${time}::VARCHAR
+          {% else %}
+          NULL
           {% endif %};;
   }
 
