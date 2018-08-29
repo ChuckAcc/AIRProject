@@ -178,7 +178,7 @@ view: ars_detail {
 
 
   parameter: impressions_toggle {
-    type: unquoted
+    type: string
     allowed_value: {
       label: "Cumulative"
       value: "delivered_impressions_runningTotal"
