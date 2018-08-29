@@ -166,18 +166,13 @@ view: ars_detail {
 
   dimension: frequencyOutlier {
     type: string
-    label: "Frequency Flag"
-    case: {
-      when: {
-        sql: ${frequency}>41;;
-        label: "Yes"
-      }
-      when: {
-        sql: ${daypart}<41;;
-        label: "No"
-      }
+    label: "Frequency Outliers"
+    sql: CASE
+      WHEN ${frequency}>40 THEN 'Outlier'
+      ELSE NULL
+      END;;
   }
-  }
+
   parameter: freqOutlier {
     type: string
     allowed_value: {
