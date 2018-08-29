@@ -219,7 +219,7 @@ measure: dynamic_impressionsV3 {
   }
 
   parameter: daypart_vs_hourly {
-    type: unquoted
+    type: string
     allowed_value: {
       label: "Show by Daypart"
       value: "daypart"
