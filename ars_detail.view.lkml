@@ -127,7 +127,7 @@ view: ars_detail {
 
   measure: Total_Delivered_Impressions{
     type: sum
-    sql:  ${TABLE}."DELIVERED_IMPRESSIONS" ;;
+    sql:  ${delivered_impressions} ;;
     value_format: "#,##0"
   }
 
@@ -152,7 +152,7 @@ view: ars_detail {
 
   measure: delivered_impressions_runningTotal{
     type: running_total
-    sql:  ${Total_Delivered_Impressions} ;;
+    sql:  ${delivered_impressions} ;;
     value_format: "#,##0"
   }
 
@@ -178,7 +178,7 @@ view: ars_detail {
 
 
   parameter: impressions_toggle {
-    type: unquoted
+    type: string
     allowed_value: {
       label: "Cumulative"
       value: "delivered_impressions_runningTotal"
@@ -187,6 +187,11 @@ view: ars_detail {
       label: "Weekly"
       value: "DELIVERED_IMPRESSIONS"
     }
+  }
+
+  dimension: passthrough_impressions_toggle {
+    type: string
+    sql:  {% parameter impressions_toggle %} ;;
   }
 
  measure: dynamic_impressionsV2 {
@@ -200,7 +205,7 @@ view: ars_detail {
     {% endif %};;
 }
 
-measure: dynamic_impressionsV3 {
+  measure: dynamic_impressionsV3 {
     type: number
     label_from_parameter: impressions_toggle
     sql: CASE
@@ -211,7 +216,7 @@ measure: dynamic_impressionsV3 {
             ELSE
                NULL
          END ;;
-}
+  }
 
   measure: dynamic_impressionsV4{
     type: number
