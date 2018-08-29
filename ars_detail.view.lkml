@@ -180,11 +180,11 @@ view: ars_detail {
   parameter: impressions_toggle {
     type: unquoted
     allowed_value: {
-      label: "Ordered"
-      value: "ORDERED_IMPRESSIONS"
+      label: "Cumulative"
+      value: "delivered_impressions_runningTotal"
     }
     allowed_value: {
-      label: "Delivered"
+      label: "Weekly"
       value: "DELIVERED_IMPRESSIONS"
     }
   }
@@ -204,9 +204,9 @@ measure: dynamic_impressionsV3 {
     type: number
     label_from_parameter: impressions_toggle
     sql: CASE
-            WHEN {% parameter impressions_toggle %} = 'Cumulative'
+            WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN (${delivered_impressions_runningTotal})
-            WHEN {% parameter impressions_toggle %} = 'Weekly'
+            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
                THEN (${Total_Delivered_Impressions})
             ELSE
                NULL
