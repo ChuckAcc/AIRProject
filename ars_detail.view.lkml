@@ -173,17 +173,6 @@ view: ars_detail {
       END;;
   }
 
-  parameter: freqOutlier {
-    type: string
-    allowed_value: {
-      label: "Yes"
-      value: "frequency"
-    }
-    allowed_value: {
-      label: "No"
-      value: "month"
-    }
-  }
 
 
   parameter: impressions_toggle {
@@ -215,7 +204,7 @@ measure: dynamic_impressionsV3 {
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN ${delivered_impressions_runningTotal}
-            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
+            WHEN {% parameter impressions_toggle %} = 'Total_Delivered_Impressions'
                THEN ${Total_Delivered_Impressions}
             ELSE
                NULL
