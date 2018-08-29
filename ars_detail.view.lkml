@@ -168,7 +168,7 @@ view: ars_detail {
     type: string
     label: "Frequency Outliers"
     sql: CASE
-      WHEN ${frequency}>40 THEN 'Outlier'
+      WHEN ${frequency}>40 THEN 'Yes'
       ELSE NULL
       END;;
   }
