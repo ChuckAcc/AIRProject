@@ -203,13 +203,17 @@ measure: dynamic_impressionsV3 {
     label_from_parameter: impressions_toggle
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'Cumulative'
-               THEN sum(${Total_Ordered_Impressions})
+               THEN (${Total_Ordered_Impressions})
             WHEN {% parameter impressions_toggle %} = 'Weekly'
-               THEN sum(${Total_Delivered_Impressions})
+               THEN (${Total_Delivered_Impressions})
             ELSE
                NULL
          END ;;
 }
-
+  measure: dynamic_impressionsV4 {
+    type: number
+    label_from_parameter: impressions_toggle
+    sql: {% parameter impressions_toggle %};;
+  }
 
 }
