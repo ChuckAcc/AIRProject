@@ -222,7 +222,7 @@ measure: dynamic_impressionsV3 {
     type: unquoted
     allowed_value: {
       label: "Show by Daypart"
-      value: "daypart_custom_sort"
+      value: "daypart"
     }
     allowed_value: {
       label: "Show by Hour"
@@ -234,8 +234,8 @@ measure: dynamic_impressionsV3 {
     type: string
     label_from_parameter: daypart_vs_hourly
     sql: CASE
-            WHEN {% parameter daypart_vs_hourly %} = 'daypart_custom_sort'
-               THEN (${daypart_custom_sort})
+            WHEN {% parameter daypart_vs_hourly %} = 'daypart'
+               THEN (${daypart})
             WHEN {% parameter daypart_vs_hourly %} = 'Time'
                THEN (${time})
             ELSE
