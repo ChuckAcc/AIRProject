@@ -178,11 +178,11 @@ view: ars_detail {
   parameter: impressions_toggle {
     type: unquoted
     allowed_value: {
-      label: "Cumulative"
-      value: "DELIVERED_IMPRESSIONS"
+      label: "Ordered"
+      value: "ORDERED_IMPRESSIONS"
     }
     allowed_value: {
-      label: "Weekly"
+      label: "Delivered"
       value: "DELIVERED_IMPRESSIONS"
     }
   }
@@ -210,10 +210,12 @@ measure: dynamic_impressionsV3 {
                NULL
          END ;;
 }
-  measure: dynamic_impressionsV4 {
+
+  measure: dynamic_impressionsV4{
     type: number
     label_from_parameter: impressions_toggle
-    sql: {% parameter impressions_toggle %};;
+    sql: sum( ${TABLE}.{% parameter impressions_toggle %});;
+    value_format: "$#,##0.00"
   }
 
 }
