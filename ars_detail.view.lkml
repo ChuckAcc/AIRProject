@@ -179,11 +179,11 @@ view: ars_detail {
     type: unquoted
     allowed_value: {
       label: "Cumulative"
-      value: "ORDERED_IMPRESSIONS"
+      value: "delivered_impressions_runningTotal"
     }
     allowed_value: {
       label: "Weekly"
-      value: "DELIVERED_IMPRESSIONS"
+      value: "Total_Delivered_Impressions"
     }
   }
 
