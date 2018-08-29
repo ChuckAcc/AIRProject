@@ -101,6 +101,7 @@ view: ars_detail {
   dimension: time {
     type: date_time
     sql: ${TABLE}."Time" ;;
+    html: {{ rendered_value | date: "%r" }};;
   }
 
   dimension: decileGroup {
