@@ -152,7 +152,7 @@ view: ars_detail {
 
   measure: delivered_impressions_runningTotal{
     type: running_total
-    sql:  ${delivered_impressions} ;;
+    sql:  ${delivered_impressions};;
     value_format: "#,##0"
   }
 
@@ -193,6 +193,11 @@ view: ars_detail {
     type: string
     sql:  {% parameter impressions_toggle %} ;;
   }
+
+#   dimension: runningtotal_v2_impressions {
+#     type: number
+#     expression: running_total(${delivered_impressions});;
+#   }
 
  measure: dynamic_impressionsV2 {
     type: number
