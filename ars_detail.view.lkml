@@ -185,7 +185,7 @@ view: ars_detail {
     }
     allowed_value: {
       label: "Weekly"
-      value: "DELIVERED_IMPRESSIONS"
+      value: "Total_Delivered_Impressions"
     }
   }
 
@@ -211,7 +211,7 @@ view: ars_detail {
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'delivered_impressions_runningTotal'
                THEN (${delivered_impressions_runningTotal})
-            WHEN {% parameter impressions_toggle %} = 'DELIVERED_IMPRESSIONS'
+            WHEN {% parameter impressions_toggle %} = 'Total_Delivered_Impressions'
                THEN (${Total_Delivered_Impressions})
             ELSE
                NULL
