@@ -218,4 +218,29 @@ measure: dynamic_impressionsV3 {
     value_format: "$#,##0.00"
   }
 
+  parameter: daypart_vs_hourly {
+    type: unquoted
+    allowed_value: {
+      label: "Show by Daypart"
+      value: "daypart_custom_sort"
+    }
+    allowed_value: {
+      label: "Show by Hour"
+      value: "Time"
+    }
+  }
+
+  dimension: daypartHourlyDim {
+    type: string
+    label_from_parameter: daypart_vs_hourly
+    sql: CASE
+            WHEN {% parameter daypart_vs_hourly %} = 'daypart_custom_sort'
+               THEN (${daypart_custom_sort})
+            WHEN {% parameter daypart_vs_hourly %} = 'Time'
+               THEN (${time})
+            ELSE
+               NULL
+         END ;;
+  }
+
 }
