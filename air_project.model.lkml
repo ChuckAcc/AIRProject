@@ -24,3 +24,5 @@ explore: addressable_bob_mockeddata {}
 explore: ars_summary {}
 
 explore: ars_detail {}
+
+explore: ars_detail_weekly_rollup {}

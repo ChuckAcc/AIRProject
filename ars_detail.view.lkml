@@ -121,6 +121,21 @@ view: ars_detail {
     END;;
   }
 
+  dimension: weekyear {
+    type: string
+    sql: WEEK(${date_raw}) || YEAR(${date_raw});;
+  }
+
+  measure: runningtotal_by_weekyear_delivered_impressions{
+    type: number
+    sql: SUM(${delivered_impressions}) OVER(PARTITION BY ${weekyear} ORDER BY ${weekyear} rows between unbounded preceding and current row) ;;
+  }
+
+  measure: cumtotal_by_weekyear_delivered_impressions {
+    type: number
+    sql: SUM(${delivered_impressions}) OVER(PARTITION BY ${weekyear} ORDER BY ${weekyear}) ;;
+  }
+
   measure: count {
     type: count
      }
