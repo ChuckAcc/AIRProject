@@ -179,7 +179,7 @@ view: ars_detail {
     type: unquoted
     allowed_value: {
       label: "Cumulative"
-      value: "delivered_impressions_runningTotal"
+      value: "ORDERED_IMPRESSIONS"
     }
     allowed_value: {
       label: "Weekly"
@@ -203,7 +203,7 @@ measure: dynamic_impressionsV3 {
     label_from_parameter: impressions_toggle
     sql: CASE
             WHEN {% parameter impressions_toggle %} = 'Cumulative'
-               THEN ${delivered_impressions_runningTotal}
+               THEN ${Total_Ordered_Impressions}
             WHEN {% parameter impressions_toggle %} = 'Weekly'
                THEN ${Total_Delivered_Impressions}
             ELSE
