@@ -234,12 +234,10 @@ measure: dynamic_impressionsV3 {
     type: string
     label_from_parameter: daypart_vs_hourly
     sql: CASE
-            WHEN {% parameter daypart_vs_hourly %} = "Show by Daypart"
+            WHEN {% parameter daypart_vs_hourly %} = 'Show by Daypart'
                THEN (${daypart})
-            WHEN {% parameter daypart_vs_hourly %} = "Show by Hour"
+            WHEN {% parameter daypart_vs_hourly %} = 'Show by Hour'
                THEN (${time})
-            ELSE
-               NULL
          END ;;
   }
 
