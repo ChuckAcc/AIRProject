@@ -121,6 +121,7 @@ view: ars_detail {
     END;;
   }
 
+
   measure: count {
     type: count
      }
@@ -244,6 +245,22 @@ measure: dynamic_impressionsV3 {
           {% endif %};;
   }
 
+  parameter: bucket_1 {
+    type: number
+  }
+  parameter: bucket_2 {
+    type: number
+  }
+  dimension: tier {
+    type: string
+    sql: CASE
+         WHEN ${ars_detail.frequency} < {% parameter bucket_1 %}
+           THEN CONCAT(CONCAT('Under', CAST({% parameter bucket_1 %} as STRING))
+         WHEN ${ars_detail.frequency} BETWEEN {% parameter bucket_1 %} AND {% parameter bucket_2 %}
+           THEN CONCAT(CONCAT('>= ', CAST({% parameter bucket_1 %} as STRING),CONCAT('and <', CAST({% parameter bucket_2 %} as STRING)))
+           ELSE ('Over ', CAST({% parameter bucket_2 %} as STRING))))
+       END;;
+  }
 
 
 }
