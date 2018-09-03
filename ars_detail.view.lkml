@@ -37,26 +37,26 @@ view: ars_detail {
       when: {
         sql: ${daypart}='6a-8a Early Morning';;
         label: "6a-8a Early Morning"
-        }
-        when: {
+      }
+      when: {
         sql: ${daypart}='8a-4p Day';;
         label: "8a-4p Day"
       }
-        when: {
-          sql: ${daypart}='4p-8p Fringe';;
-          label: "4p-8p Fringe"
-        }
-        when: {
-          sql: ${daypart}='8p-2a Prime';;
-          label: "8p-2a Prime"
-        }
-        when: {
-          sql: ${daypart}='2a-6a Overnight';;
-          label: "2a-6a Overnight"
-        }
+      when: {
+        sql: ${daypart}='4p-8p Fringe';;
+        label: "4p-8p Fringe"
+      }
+      when: {
+        sql: ${daypart}='8p-2a Prime';;
+        label: "8p-2a Prime"
+      }
+      when: {
+        sql: ${daypart}='2a-6a Overnight';;
+        label: "2a-6a Overnight"
+      }
+    }
+    drill_fields: [time]
   }
-  drill_fields: [time]
-}
 
   dimension: deal_id {
     type: string
@@ -93,7 +93,7 @@ view: ars_detail {
     sql: ${TABLE}."REACH" ;;
   }
 
- dimension: type {
+  dimension: type {
     type: string
     sql: ${TABLE}."Type" ;;
   }
@@ -107,24 +107,24 @@ view: ars_detail {
   dimension: decileGroup {
     type: string
     sql:  CASE
-    WHEN
-    ${ars_detail.frequency}<=10 THEN '1-10'
-    WHEN
-    ${ars_detail.frequency}>=11 AND ${ars_detail.frequency}<=20 THEN '11-20'
-    WHEN
-    ${ars_detail.frequency}>=21 AND ${ars_detail.frequency}<=30 THEN '21-30'
-    WHEN
-    ${ars_detail.frequency}>=31 AND ${ars_detail.frequency}<=40 THEN '31-40'
-    WHEN
-    ${ars_detail.frequency}>=41 AND ${ars_detail.frequency}<=50 THEN '41-50'
-    ELSE NULL
-    END;;
+          WHEN
+          ${ars_detail.frequency}<=10 THEN '1-10'
+          WHEN
+          ${ars_detail.frequency}>=11 AND ${ars_detail.frequency}<=20 THEN '11-20'
+          WHEN
+          ${ars_detail.frequency}>=21 AND ${ars_detail.frequency}<=30 THEN '21-30'
+          WHEN
+          ${ars_detail.frequency}>=31 AND ${ars_detail.frequency}<=40 THEN '31-40'
+          WHEN
+          ${ars_detail.frequency}>=41 AND ${ars_detail.frequency}<=50 THEN '41-50'
+          ELSE NULL
+          END;;
   }
 
 
   measure: count {
     type: count
-     }
+  }
 
   measure: Total_Delivered_Impressions{
     type: sum
@@ -190,7 +190,7 @@ view: ars_detail {
     }
   }
 
- measure: dynamic_impressionsV2 {
+  measure: dynamic_impressionsV2 {
     type: number
     label_from_parameter: impressions_toggle
     sql:
@@ -199,9 +199,9 @@ view: ars_detail {
     {% elsif impressions_toggle._parameter_value == 'delivered_impressions_runningTotal' %}
     ${delivered_impressions_runningTotal}
     {% endif %};;
-}
+  }
 
-measure: dynamic_impressionsV3 {
+  measure: dynamic_impressionsV3 {
     type: number
     label_from_parameter: impressions_toggle
     sql: CASE
@@ -212,7 +212,7 @@ measure: dynamic_impressionsV3 {
             ELSE
                NULL
          END ;;
-}
+  }
 
   measure: dynamic_impressionsV4{
     type: number
@@ -253,14 +253,12 @@ measure: dynamic_impressionsV3 {
   }
   dimension: tier {
     type: string
-    sql: CASE
-         WHEN ${ars_detail.frequency} < {% parameter bucket_1 %}
-           THEN CONCAT(CONCAT('Under', CAST({% parameter bucket_1 %} as STRING))
-         WHEN ${ars_detail.frequency} BETWEEN {% parameter bucket_1 %} AND {% parameter bucket_2 %}
-           THEN CONCAT(CONCAT('>= ', CAST({% parameter bucket_1 %} as STRING),CONCAT('and <', CAST({% parameter bucket_2 %} as STRING)))
-           ELSE ('Over ', CAST({% parameter bucket_2 %} as STRING))))
-       END;;
+    sql:  CASE
+          WHEN
+          ${ars_detail.frequency}>= {% parameter bucket_1 %} AND ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ${ars_detail.frequency}
+          WHEN
+          ${ars_detail.frequency}>= {% parameter bucket_1 %} AND ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ${ars_detail.frequency}
+          ELSE NULL
+          END;;
   }
-
-
 }
