@@ -251,14 +251,34 @@ view: ars_detail {
   parameter: bucket_2 {
     type: number
   }
+  parameter: bucket_3 {
+    type: number
+  }
+  parameter: bucket_4 {
+    type: number
+  }
+
   dimension: tier {
+    type: string
+    sql: CASE
+      WHEN ${ars_detail.frequency} < {% parameter bucket_1 %}
+      THEN CONCAT('Under', CAST({% parameter bucket_1 %} as STRING))
+      WHEN ${ars_detail.frequency} >= {% parameter bucket_1 %} AND ${ars_detail.frequency} < {% parameter bucket_2 %}
+      THEN CONCAT('>= ', CAST({% parameter bucket_1 %} as STRING)) || CONCAT(' and <', CAST({% parameter bucket_2 %} as STRING))
+      ELSE concat('Over ', CAST({% parameter bucket_2 %} as STRING))
+      END;;
+  }
+
+  dimension: tier2 {
     type: string
     sql:  CASE
           WHEN
-          ${ars_detail.frequency}>= {% parameter bucket_1 %} AND ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ${ars_detail.frequency}
+          ${ars_detail.frequency}<= {% parameter bucket_1 %} THEN '1-' + {% parameter bucket_1 %}
           WHEN
-          ${ars_detail.frequency}>= {% parameter bucket_1 %} AND ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ${ars_detail.frequency}
-          ELSE NULL
+          ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ({% parameter bucket_1 %}+1) + '-' + {% parameter bucket_2 %}
+          WHEN
+          ${ars_detail.frequency}<= {% parameter bucket_3 %} THEN ({% parameter bucket_2 %}+1) + '-' + {% parameter bucket_3 %}
+          ELSE '>' +${bucket_3}
           END;;
   }
 }
