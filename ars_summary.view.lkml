@@ -103,7 +103,13 @@ view: ars_summary {
     sql: ${TABLE}.Frequency ;;
   }
 
-  measure: Total_Ordered_Impressions {
+  dimension: Last_Update_Dt{
+    type: date
+    label: "Data Last Updated:"
+    sql: ${TABLE}."Last Update Date" ;;
+  }
+
+    measure: Total_Ordered_Impressions {
     type: sum_distinct
     sql: ${TABLE}.Ordered_Impressions ;;
   }
