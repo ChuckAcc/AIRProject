@@ -95,8 +95,21 @@ view: ars_detail {
 
   dimension: type {
     type: string
-    sql: ${TABLE}."Type" ;;
-  }
+    case: {
+      when: {
+        sql: ${TABLE}."Type"='Live';;
+        label: "Live"
+      }
+      when: {
+        sql: ${TABLE}."Type"='DVR';;
+        label: "DVR"
+      }
+      when: {
+        sql: ${TABLE}."Type"='VOD';;
+        label: "VOD"
+      }
+      }
+      }
 
   dimension: time {
     type: date_time
