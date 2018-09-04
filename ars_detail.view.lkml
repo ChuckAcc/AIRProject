@@ -270,7 +270,9 @@ view: ars_detail {
   parameter: bucket_4 {
     type: number
   }
-
+  parameter: bucket_5 {
+    type: number
+  }
   dimension: tier {
     type: string
     sql: CASE
@@ -285,13 +287,15 @@ view: ars_detail {
   dimension: tier2 {
     type: string
     sql:  CASE
-      WHEN ${ars_detail.frequency} <= {% parameter bucket_1 %}
+     WHEN ${ars_detail.frequency} <= {% parameter bucket_1 %}
         THEN CONCAT('1-', CAST({% parameter bucket_1 %} as STRING))
       WHEN ${ars_detail.frequency} <= {% parameter bucket_2 %}
         THEN CAST({% parameter bucket_1 %}+1 as STRING) || CONCAT('-', CAST({% parameter bucket_2 %} as STRING))
       WHEN ${ars_detail.frequency} <= {% parameter bucket_3 %}
         THEN CAST({% parameter bucket_2 %}+1 as STRING) || CONCAT('-', CAST({% parameter bucket_3 %} as STRING))
-      ELSE CONCAT(CAST({% parameter bucket_4 %} as STRING),'+')
+      WHEN ${ars_detail.frequency} <= {% parameter bucket_4 %}
+        THEN CAST({% parameter bucket_3 %}+1 as STRING) || CONCAT('-', CAST({% parameter bucket_4 %} as STRING))
+      ELSE CONCAT(CAST({% parameter bucket_5 %} as STRING),'+')
       END;;
   }
 }
