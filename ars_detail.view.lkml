@@ -272,13 +272,13 @@ view: ars_detail {
   dimension: tier2 {
     type: string
     sql:  CASE
-          WHEN
-          ${ars_detail.frequency}<= {% parameter bucket_1 %} THEN '1-' + {% parameter bucket_1 %}
-          WHEN
-          ${ars_detail.frequency}<= {% parameter bucket_2 %} THEN ({% parameter bucket_1 %}+1) + '-' + {% parameter bucket_2 %}
-          WHEN
-          ${ars_detail.frequency}<= {% parameter bucket_3 %} THEN ({% parameter bucket_2 %}+1) + '-' + {% parameter bucket_3 %}
-          ELSE '>' +${bucket_3}
-          END;;
+      WHEN ${ars_detail.frequency} <= {% parameter bucket_1 %}
+        THEN CONCAT('1-', CAST({% parameter bucket_1 %} as STRING))
+      WHEN ${ars_detail.frequency} <= {% parameter bucket_2 %}
+        THEN CAST({% parameter bucket_1 %} as STRING)) || CONCAT('-', CAST({% parameter bucket_2 %} as STRING))
+      WHEN ${ars_detail.frequency} <= {% parameter bucket_3 %}
+        THEN CAST({% parameter bucket_2 %} as STRING)) || CONCAT('-', CAST({% parameter bucket_3 %} as STRING))
+      ELSE concat('>', CAST({% parameter bucket_4 %} as STRING))
+      END;;
   }
 }
