@@ -155,6 +155,11 @@ view: ars_detail {
     sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
   }
 
+  measure: Avg_Ordered_Impressions{
+    type:average
+    sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
+  }
+
   measure: avg_Frequency{
     type: average
     sql:  ${TABLE}."FREQUENCY"  ;;
@@ -175,7 +180,7 @@ view: ars_detail {
     sql:  ${total_reach} ;;
   }
 
-  measure: Reach_runningTotal_percent{
+  measure: Reach_PercentOfTotal{
     type: percent_of_total
     sql:  ${total_reach}" ;;
   }
