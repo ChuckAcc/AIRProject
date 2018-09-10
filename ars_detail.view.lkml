@@ -182,7 +182,7 @@ view: ars_detail {
 
   measure: Reach_PercentOfTotal{
     type: percent_of_total
-    sql:  ${total_reach}" ;;
+    sql:  ${total_reach} ;;
   }
 
   dimension: frequencyOutlier {
