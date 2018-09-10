@@ -300,7 +300,7 @@ view: ars_detail {
         THEN CAST({% parameter bucket_2 %}+1 as STRING) || CONCAT('-', CAST({% parameter bucket_3 %} as STRING))
       WHEN ${ars_detail.frequency} <= {% parameter bucket_4 %}
         THEN CAST({% parameter bucket_3 %}+1 as STRING) || CONCAT('-', CAST({% parameter bucket_4 %} as STRING))
-      ELSE CONCAT(CAST({% parameter bucket_5 %} as STRING),'+')
+      ELSE CONCAT(CAST({% parameter bucket_4 %} as STRING),'+')
       END;;
   }
 }
