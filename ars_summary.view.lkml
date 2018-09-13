@@ -88,6 +88,11 @@ view: ars_summary {
     sql: ${TABLE}.Target ;;
   }
 
+  dimension: Target2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}.Target,'|') ;;
+  }
+
   dimension: Universe_Estimate{
     type: number
     label: "Target Universe"
