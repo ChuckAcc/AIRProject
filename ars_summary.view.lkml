@@ -13,12 +13,14 @@ view: ars_summary {
 
   dimension: Advertiser_Name2{
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,'|');;
+    label: "Advertiser"
+    sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,', ');;
   }
 
   dimension: Agency_Name2 {
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,'|') ;;
+    label: "Agency"
+    sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,', ') ;;
   }
   dimension: IO_ID {
     primary_key:yes
@@ -28,7 +30,8 @@ view: ars_summary {
 
   dimension: io_id_custom2 {
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",'|') ;;
+    label: "Insertion Order"
+    sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",', ') ;;
   }
 
   dimension: IO_Name {
@@ -38,7 +41,8 @@ view: ars_summary {
 
   dimension: IO_Name2 {
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,'|') ;;
+    label: "Insertion Order Name"
+    sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,', ') ;;
   }
 
   dimension_group: Flight_Start_Date {
@@ -79,7 +83,8 @@ view: ars_summary {
 
   dimension: Deal_ID2 {
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,'|') ;;
+    label: "Deal Number"
+    sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,', ') ;;
   }
 
 
@@ -90,7 +95,8 @@ view: ars_summary {
 
   dimension: Target2 {
     type: string
-    sql: LISTAGG(DISTINCT ${TABLE}.Target,'|') ;;
+    label: "IO Target"
+    sql: LISTAGG(DISTINCT ${TABLE}.Target,', ') ;;
   }
 
   dimension: Universe_Estimate{
