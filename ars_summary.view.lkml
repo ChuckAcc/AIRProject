@@ -1,27 +1,8 @@
 view: ars_summary {
   sql_table_name: PUBLIC.ARS_SUMMARY ;;
 
-  dimension: Advertiser_Name{
-    type: string
-    sql: ${TABLE}.Advertiser_Name ;;
-   }
+########## ID's, Primary Keys ##########
 
-  dimension: Agency_Name {
-    type: string
-    sql: ${TABLE}.Agency_Name ;;
-   }
-
-  dimension: Advertiser_Name2{
-    type: string
-    label: "Advertiser"
-    sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,', ');;
-  }
-
-  dimension: Agency_Name2 {
-    type: string
-    label: "Agency"
-    sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,', ') ;;
-  }
   dimension: IO_ID {
     primary_key:yes
     type: number
@@ -34,16 +15,14 @@ view: ars_summary {
     sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",', ') ;;
   }
 
-  dimension: IO_Name {
+  dimension: Deal_ID {
     type: string
-    sql: ${TABLE}.IO_Name ;;
+    sql: ${TABLE}.Deal_ID ;;
+    # drill_fields: [IO_ID]
   }
 
-  dimension: IO_Name2 {
-    type: string
-    label: "Insertion Order Name"
-    sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,', ') ;;
-  }
+
+########## Date/Time Dimensions ##########
 
   dimension_group: Flight_Start_Date {
     type: time
@@ -75,10 +54,52 @@ view: ars_summary {
     sql:  ${TABLE}."Flight_Concat";;
   }
 
-  dimension: Deal_ID {
+  dimension: Last_Update_Dt{
+    type: date
+    label: "Data Last Updated:"
+    sql: ${TABLE}."Last Update Date" ;;
+  }
+
+########## Dimensional Attributes ##########
+
+  dimension: Advertiser_Name{
     type: string
-    sql: ${TABLE}.Deal_ID ;;
-   # drill_fields: [IO_ID]
+    sql: ${TABLE}.Advertiser_Name ;;
+  }
+
+  dimension: Agency_Name {
+    type: string
+    sql: ${TABLE}.Agency_Name ;;
+  }
+
+  dimension: IO_Name {
+    type: string
+    sql: ${TABLE}.IO_Name ;;
+  }
+
+  dimension: Target {
+    type: string
+    sql: ${TABLE}.Target ;;
+  }
+
+########## Information Section Custom Attributes ##########
+
+  dimension: Advertiser_Name2{
+    type: string
+    label: "Advertiser"
+    sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,', ');;
+  }
+
+  dimension: Agency_Name2 {
+    type: string
+    label: "Agency"
+    sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,', ') ;;
+  }
+
+  dimension: IO_Name2 {
+    type: string
+    label: "Insertion Order Name"
+    sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,', ') ;;
   }
 
   dimension: Deal_ID2 {
@@ -87,17 +108,19 @@ view: ars_summary {
     sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,', ') ;;
   }
 
-
-  dimension: Target {
-    type: string
-    sql: ${TABLE}.Target ;;
-  }
-
   dimension: Target2 {
     type: string
     label: "IO Target"
     sql: LISTAGG(DISTINCT ${TABLE}.Target,', ') ;;
   }
+
+  dimension: flight_concat2 {
+    type: string
+    label: "Flight Period"
+    sql:  LISTAGG(DISTINCT ${TABLE}."Flight_Concat",', ');;
+  }
+
+########## Impression Information ##########
 
   dimension: Universe_Estimate{
     type: number
@@ -139,13 +162,9 @@ view: ars_summary {
     sql: ${TABLE}.Frequency ;;
   }
 
-  dimension: Last_Update_Dt{
-    type: date
-    label: "Data Last Updated:"
-    sql: ${TABLE}."Last Update Date" ;;
-  }
+  ########## Measures ##########
 
-    measure: Total_Ordered_Impressions {
+  measure: Total_Ordered_Impressions {
     type: sum_distinct
     sql: ${TABLE}.Ordered_Impressions ;;
   }
