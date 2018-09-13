@@ -95,6 +95,11 @@ view: ars_detail {
 
 ########## Dimensional Attributes ##########
 
+  dimension: io_name {
+    type: string
+    sql: ${TABLE}."IO_NAME" ;;
+  }
+
  dimension: advertiser_name {
     type: string
     sql: ${TABLE}."ADVERTISER_NAME" ;;
@@ -164,11 +169,6 @@ view: ars_detail {
   dimension: frequency {
     type: number
     sql: ${TABLE}."FREQUENCY" ;;
-  }
-
-  dimension: io_name {
-    type: string
-    sql: ${TABLE}."IO_NAME" ;;
   }
 
   dimension: reach {
