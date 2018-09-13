@@ -1,76 +1,11 @@
 view: ars_detail {
   sql_table_name: PUBLIC.ARS_DETAIL ;;
 
-  dimension: advertiser_name {
-    type: string
-    sql: ${TABLE}."ADVERTISER_NAME" ;;
-  }
-
-  dimension: agency_name {
-    type: string
-    sql: ${TABLE}."AGENCY_NAME" ;;
-  }
-
-  dimension_group: date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}."DATE" ;;
-  }
-
-  dimension: daypart {
-    type: string
-    sql: ${TABLE}."DAYPART" ;;
-    drill_fields: [time]
-  }
-  dimension: daypart_custom_sort {
-    label: "Daypart (Custom Sort)"
-    case: {
-      when: {
-        sql: ${daypart}='6a-8a Early Morning';;
-        label: "6a-8a Early Morning"
-      }
-      when: {
-        sql: ${daypart}='8a-4p Day';;
-        label: "8a-4p Day"
-      }
-      when: {
-        sql: ${daypart}='4p-8p Fringe';;
-        label: "4p-8p Fringe"
-      }
-      when: {
-        sql: ${daypart}='8p-2a Prime';;
-        label: "8p-2a Prime"
-      }
-      when: {
-        sql: ${daypart}='2a-6a Overnight';;
-        label: "2a-6a Overnight"
-      }
-    }
-    drill_fields: [time]
-  }
+########## ID's, Primary Keys ##########
 
   dimension: deal_id {
     type: string
     sql: ${TABLE}."DEAL_ID" ;;
-  }
-
-  dimension: delivered_impressions {
-    type: number
-    sql: ${TABLE}."DELIVERED_IMPRESSIONS" ;;
-  }
-
-  dimension: frequency {
-    type: number
-    sql: ${TABLE}."FREQUENCY" ;;
   }
 
   dimension: io_id {
@@ -99,21 +34,75 @@ view: ars_detail {
   dimension: io_id_custom2 {
     type: string
     sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",'|') ;;
-}
+  }
 
-  dimension: io_name {
+
+
+########## Time Dimensions ##########
+  dimension_group: date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}."DATE" ;;
+  }
+
+  dimension: time {
+    type: date_time
+    sql: ${TABLE}."Time" ;;
+    html: {{ rendered_value | date: "%r" }};;
+  }
+
+  dimension: daypart {
     type: string
-    sql: ${TABLE}."IO_NAME" ;;
+    sql: ${TABLE}."DAYPART" ;;
+    drill_fields: [time]
   }
 
-  dimension: ordered_impressions {
-    type: number
-    sql: ${TABLE}."ORDERED_IMPRESSIONS" ;;
+  dimension: daypart_custom_sort {
+    label: "Daypart (Custom Sort)"
+    case: {
+      when: {
+        sql: ${daypart}='6a-8a Early Morning';;
+        label: "6a-8a Early Morning"
+      }
+      when: {
+        sql: ${daypart}='8a-4p Day';;
+        label: "8a-4p Day"
+      }
+      when: {
+        sql: ${daypart}='4p-8p Fringe';;
+        label: "4p-8p Fringe"
+      }
+      when: {
+        sql: ${daypart}='8p-2a Prime';;
+        label: "8p-2a Prime"
+      }
+      when: {
+        sql: ${daypart}='2a-6a Overnight';;
+        label: "2a-6a Overnight"
+      }
+    }
+    drill_fields: [time]
   }
 
-  dimension: reach {
-    type: number
-    sql: ${TABLE}."REACH" ;;
+########## Dimensional Attributes ##########
+
+ dimension: advertiser_name {
+    type: string
+    sql: ${TABLE}."ADVERTISER_NAME" ;;
+  }
+
+  dimension: agency_name {
+    type: string
+    sql: ${TABLE}."AGENCY_NAME" ;;
   }
 
   dimension: type {
@@ -131,13 +120,7 @@ view: ars_detail {
         sql: ${TABLE}."Type"='VOD';;
         label: "VOD"
       }
-      }
-      }
-
-  dimension: time {
-    type: date_time
-    sql: ${TABLE}."Time" ;;
-    html: {{ rendered_value | date: "%r" }};;
+    }
   }
 
   dimension: decileGroup {
@@ -157,6 +140,43 @@ view: ars_detail {
           END;;
   }
 
+  dimension: frequencyOutlier {
+    type: string
+    label: "Frequency Outliers"
+    sql: CASE
+      WHEN ${frequency}>40 THEN 'Yes'
+      ELSE NULL
+      END;;
+  }
+
+########## Impression Information ##########
+
+  dimension: delivered_impressions {
+    type: number
+    sql: ${TABLE}."DELIVERED_IMPRESSIONS" ;;
+  }
+
+  dimension: ordered_impressions {
+    type: number
+    sql: ${TABLE}."ORDERED_IMPRESSIONS" ;;
+  }
+
+  dimension: frequency {
+    type: number
+    sql: ${TABLE}."FREQUENCY" ;;
+  }
+
+  dimension: io_name {
+    type: string
+    sql: ${TABLE}."IO_NAME" ;;
+  }
+
+  dimension: reach {
+    type: number
+    sql: ${TABLE}."REACH" ;;
+  }
+
+########## Measures ##########
 
   measure: count {
     type: count
@@ -208,16 +228,8 @@ view: ars_detail {
     sql:  ${total_reach} ;;
   }
 
-  dimension: frequencyOutlier {
-    type: string
-    label: "Frequency Outliers"
-    sql: CASE
-      WHEN ${frequency}>40 THEN 'Yes'
-      ELSE NULL
-      END;;
-  }
 
-
+  ########## Cumulative vs Weekly Toggle - NOT BEING USED ##########
 
   parameter: impressions_toggle {
     type: string
@@ -230,18 +242,6 @@ view: ars_detail {
       value: "Total_Delivered_Impressions"
     }
   }
-
-  measure: dynamic_impressionsV2 {
-    type: number
-    label_from_parameter: impressions_toggle
-    sql:
-    {% if impressions_toggle._parameter_value == 'DELIVERED_IMPRESSIONS' %}
-    ${Total_Delivered_Impressions}
-    {% elsif impressions_toggle._parameter_value == 'delivered_impressions_runningTotal' %}
-    ${delivered_impressions_runningTotal}
-    {% endif %};;
-  }
-
   measure: dynamic_impressionsV3 {
     type: number
     label_from_parameter: impressions_toggle
@@ -255,13 +255,7 @@ view: ars_detail {
          END ;;
   }
 
-  measure: dynamic_impressionsV4{
-    type: number
-    label_from_parameter: impressions_toggle
-    sql: sum( ${TABLE}.{% parameter impressions_toggle %});;
-    value_format: "$#,##0.00"
-  }
-
+  ########## Daypart vs Hourly Toggle - NOT BEING USED ##########
   parameter: daypart_vs_hourly {
     type: string
     allowed_value: {
@@ -286,6 +280,7 @@ view: ars_detail {
           {% endif %};;
   }
 
+########## Frequency by Range Buckets ##########
   parameter: bucket_1 {
     type: number
   }
@@ -300,16 +295,6 @@ view: ars_detail {
   }
   parameter: bucket_5 {
     type: number
-  }
-  dimension: tier {
-    type: string
-    sql: CASE
-      WHEN ${ars_detail.frequency} < {% parameter bucket_1 %}
-      THEN CONCAT('Under', CAST({% parameter bucket_1 %} as STRING))
-      WHEN ${ars_detail.frequency} >= {% parameter bucket_1 %} AND ${ars_detail.frequency} < {% parameter bucket_2 %}
-      THEN CONCAT('>= ', CAST({% parameter bucket_1 %} as STRING)) || CONCAT(' and <', CAST({% parameter bucket_2 %} as STRING))
-      ELSE concat('Over ', CAST({% parameter bucket_2 %} as STRING))
-      END;;
   }
 
   dimension: tier2 {
