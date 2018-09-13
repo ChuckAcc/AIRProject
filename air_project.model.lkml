@@ -23,4 +23,6 @@ explore: addressable_bob_mockeddata {}
 
 explore: ars_summary {}
 
-explore: ars_detail {}
+explore: ars_detail {
+  cancel_grouping_fields: [ars_detail.io_id_custom2]
+}

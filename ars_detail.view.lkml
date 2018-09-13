@@ -78,6 +78,29 @@ view: ars_detail {
     sql: ${TABLE}."IO_ID" ;;
   }
 
+  dimension: io_id_custom {
+    type: string
+    sql: ${TABLE}."IO_ID" ;;
+    html:
+    {% assign io_id_custom = value | split: "|" %}
+
+    <details>
+    <summary>IO's ({{io_id_custom.size}})</summary>
+
+    <ul>
+      {% for io in io_id_custom %}
+     <li>{{io}}</li>
+      {% endfor %}
+    </ul>
+    </details>
+    ;;
+  }
+
+  dimension: io_id_custom2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",'|') ;;
+}
+
   dimension: io_name {
     type: string
     sql: ${TABLE}."IO_NAME" ;;
