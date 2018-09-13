@@ -21,7 +21,9 @@ explore: mock_car_data {}
 
 explore: addressable_bob_mockeddata {}
 
-explore: ars_summary {}
+explore: ars_summary {
+  cancel_grouping_fields: [ars_summary.io_id_custom2]
+}
 
 explore: ars_detail {
   cancel_grouping_fields: [ars_detail.io_id_custom2]

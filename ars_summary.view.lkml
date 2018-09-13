@@ -17,6 +17,11 @@ view: ars_summary {
     sql: ${TABLE}.IO_ID;;
   }
 
+  dimension: io_id_custom2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",'|') ;;
+  }
+
   dimension: IO_Name {
     type: string
     sql: ${TABLE}.IO_Name ;;
