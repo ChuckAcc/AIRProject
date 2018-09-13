@@ -22,7 +22,7 @@ explore: mock_car_data {}
 explore: addressable_bob_mockeddata {}
 
 explore: ars_summary {
-  cancel_grouping_fields: [ars_summary.io_id_custom2, ars_summary.Agency_Name, ars_summary.Advertiser_Name, ars_summary.Deal_ID]
+  cancel_grouping_fields: [ars_summary.io_id_custom2, ars_summary.Agency_Name2, ars_summary.Advertiser_Name2, ars_summary.Deal_ID2]
 }
 
 explore: ars_detail {

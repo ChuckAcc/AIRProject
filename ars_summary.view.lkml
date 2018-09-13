@@ -11,6 +11,15 @@ view: ars_summary {
     sql: ${TABLE}.Agency_Name ;;
    }
 
+  dimension: Advertiser_Name2{
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,'|');;
+  }
+
+  dimension: Agency_Name2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,'|') ;;
+  }
   dimension: IO_ID {
     primary_key:yes
     type: number
@@ -25,6 +34,11 @@ view: ars_summary {
   dimension: IO_Name {
     type: string
     sql: ${TABLE}.IO_Name ;;
+  }
+
+  dimension: IO_Name2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,'|') ;;
   }
 
   dimension_group: Flight_Start_Date {
@@ -62,6 +76,12 @@ view: ars_summary {
     sql: ${TABLE}.Deal_ID ;;
    # drill_fields: [IO_ID]
   }
+
+  dimension: Deal_ID2 {
+    type: string
+    sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,'|') ;;
+  }
+
 
   dimension: Target {
     type: string
