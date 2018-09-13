@@ -1,4 +1,5 @@
 view: addressable_bob_mockeddata {
+  view_label: "Book of Business"
   sql_table_name: PUBLIC.ADDRESSABLE_BOB_MOCKEDDATA ;;
 
   dimension: ad_id {
