@@ -87,36 +87,42 @@ view: ars_summary {
   dimension: Advertiser_Name2{
     type: string
     label: "Advertiser"
+    hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,', ');;
   }
 
   dimension: Agency_Name2 {
     type: string
     label: "Agency"
+    hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,', ') ;;
   }
 
   dimension: IO_Name2 {
     type: string
     label: "Insertion Order Name"
+    hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,', ') ;;
   }
 
   dimension: Deal_ID2 {
     type: string
     label: "Deal Number"
+    hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,', ') ;;
   }
 
   dimension: Target2 {
     type: string
     label: "IO Target"
+    hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Target,', ') ;;
   }
 
   dimension: flight_concat2 {
     type: string
     label: "Flight Period"
+    hidden:  yes
     sql:  LISTAGG(DISTINCT ${TABLE}."Flight_Concat",', ');;
   }
 
