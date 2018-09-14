@@ -38,7 +38,7 @@ view: ars_detail {
 
 
 
-########## Time Dimensions ##########
+########## Date/Time Dimensions ##########
   dimension_group: date {
     type: time
     timeframes: [

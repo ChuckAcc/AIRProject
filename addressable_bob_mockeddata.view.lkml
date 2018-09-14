@@ -1,60 +1,40 @@
 view: addressable_bob_mockeddata {
     sql_table_name: PUBLIC.ADDRESSABLE_BOB_MOCKEDDATA ;;
 
+########## ID's, Primary Keys ##########
+
   dimension: ad_id {
     type: string
     sql: ${TABLE}."AD_ID" ;;
   }
-
-  dimension: advertiser_industry_name {
+  dimension: deal_id {
     type: string
-    sql: ${TABLE}."ADVERTISER_INDUSTRY_NAME" ;;
+    sql: ${TABLE}."DEAL_ID" ;;
+    drill_fields: [io_id, line_id]
   }
-
-  dimension: contract_units {
+  dimension: external_line_id {
     type: number
-    sql: ${TABLE}."CONTRACT_UNITS" ;;
+    sql: ${TABLE}."EXTERNAL_LINE_ID" ;;
   }
-
-  dimension: creative_format {
-    type: string
-    sql: ${TABLE}."CREATIVE_FORMAT" ;;
-  }
-
-  dimension: creative_size {
-    type: string
-    sql: ${TABLE}."CREATIVE_SIZE" ;;
-  }
-
-  dimension: current_revenue_owner_name {
-    type: string
-    sql: ${TABLE}."CURRENT_REVENUE_OWNER_NAME" ;;
-  }
-
-  dimension: daypart_selection {
-    type: string
-    sql: ${TABLE}."DAYPART_SELECTION" ;;
-  }
-
-  dimension: deal_advertiser_name {
-    type: string
-    sql: ${TABLE}."DEAL_ADVERTISER_NAME" ;;
-  }
-
-  dimension: deal_billable_revenue {
-    type: string
-    sql: ${TABLE}."DEAL_BILLABLE_REVENUE" ;;
-  }
-
-  dimension: deal_billing_agency_commission_pct {
+  dimension: invidi_io_id {
     type: number
-    sql: ${TABLE}."DEAL_BILLING_AGENCY_COMMISSION_PCT" ;;
+    sql: ${TABLE}."INVIDI_IO_ID" ;;
+  }
+  dimension: io_id {
+    type: number
+    sql: ${TABLE}."IO_ID" ;;
+  }
+  dimension: line_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}."LINE_ID" ;;
+  }
+  dimension: proposal_id {
+    type: string
+    sql: ${TABLE}."PROPOSAL_ID" ;;
   }
 
-  dimension: deal_buying_agency_name {
-    type: string
-    sql: ${TABLE}."DEAL_BUYING_AGENCY_NAME" ;;
-  }
+########## Date/Time Dimensions ##########
 
   dimension_group: deal_flight_end {
     type: time
@@ -85,78 +65,6 @@ view: addressable_bob_mockeddata {
     datatype: date
     sql: ${TABLE}."DEAL_FLIGHT_START_DATE" ;;
   }
-
-  dimension: deal_id {
-    type: string
-    sql: ${TABLE}."DEAL_ID" ;;
-    drill_fields: [io_id, line_id]
-  }
-
-  dimension: deal_likelihood_pct {
-    type: number
-    sql: ${TABLE}."DEAL_LIKELIHOOD_PCT" ;;
-  }
-
-  dimension: deal_name {
-    type: string
-    sql: ${TABLE}."DEAL_NAME" ;;
-  }
-
-  dimension: deal_type {
-    type: string
-    sql: ${TABLE}."DEAL_TYPE" ;;
-  }
-
-  dimension: delivered_units {
-    type: number
-    sql: ${TABLE}."DELIVERED_UNITS" ;;
-  }
-
-  dimension: excluded_networks {
-    type: string
-    sql: ${TABLE}."EXCLUDED_NETWORKS" ;;
-  }
-
-  dimension: excluded_ratings {
-    type: string
-    sql: ${TABLE}."EXCLUDED_RATINGS" ;;
-  }
-
-  dimension: external_line_id {
-    type: number
-    sql: ${TABLE}."EXTERNAL_LINE_ID" ;;
-  }
-
-  dimension: frequency_capping {
-    type: string
-    sql: ${TABLE}."FREQUENCY_CAPPING" ;;
-  }
-
-  dimension: gross_contract_value {
-    type: number
-    sql: ${TABLE}."GROSS_CONTRACT_VALUE" ;;
-  }
-
-  dimension: households {
-    type: number
-    sql: ${TABLE}."HOUSEHOLDS" ;;
-  }
-
-  dimension: included_ratings {
-    type: string
-    sql: ${TABLE}."INCLUDED_RATINGS" ;;
-  }
-
-  dimension: insertion_order_name {
-    type: string
-    sql: ${TABLE}."INSERTION_ORDER_NAME" ;;
-  }
-
-  dimension: invidi_io_id {
-    type: number
-    sql: ${TABLE}."INVIDI_IO_ID" ;;
-  }
-
   dimension_group: io_end {
     type: time
     timeframes: [
@@ -170,11 +78,6 @@ view: addressable_bob_mockeddata {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."IO_END_DATE" ;;
-  }
-
-  dimension: io_id {
-    type: number
-    sql: ${TABLE}."IO_ID" ;;
   }
 
   dimension_group: io_start {
@@ -191,17 +94,6 @@ view: addressable_bob_mockeddata {
     datatype: date
     sql: ${TABLE}."IO_START_DATE" ;;
   }
-
-  dimension: io_status {
-    type: string
-    sql: ${TABLE}."IO_STATUS" ;;
-  }
-
-  dimension: line_contract_price {
-    type: number
-    sql: ${TABLE}."LINE_CONTRACT_PRICE" ;;
-  }
-
   dimension_group: line_end {
     type: time
     timeframes: [
@@ -216,22 +108,6 @@ view: addressable_bob_mockeddata {
     datatype: date
     sql: ${TABLE}."LINE_END_DATE" ;;
   }
-
-  dimension: line_id {
-    type: string
-    sql: ${TABLE}."LINE_ID" ;;
-  }
-
-  dimension: line_name {
-    type: string
-    sql: ${TABLE}."LINE_NAME" ;;
-  }
-
-  dimension: line_product_name {
-    type: string
-    sql: ${TABLE}."LINE_PRODUCT_NAME" ;;
-  }
-
   dimension_group: line_start {
     type: time
     timeframes: [
@@ -247,6 +123,89 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."LINE_START_DATE" ;;
   }
 
+########## Dimensional Attributes ##########
+  dimension: advertiser_industry_name {
+    type: string
+    sql: ${TABLE}."ADVERTISER_INDUSTRY_NAME" ;;
+  }
+  dimension: creative_format {
+    type: string
+    sql: ${TABLE}."CREATIVE_FORMAT" ;;
+  }
+
+  dimension: current_revenue_owner_name {
+    type: string
+    sql: ${TABLE}."CURRENT_REVENUE_OWNER_NAME" ;;
+  }
+  dimension: daypart_selection {
+    type: string
+    sql: ${TABLE}."DAYPART_SELECTION" ;;
+  }
+
+  dimension: deal_advertiser_name {
+    type: string
+    sql: ${TABLE}."DEAL_ADVERTISER_NAME" ;;
+  }
+
+  dimension: deal_billable_revenue {
+    type: string
+    sql: ${TABLE}."DEAL_BILLABLE_REVENUE" ;;
+  }
+
+  dimension: deal_buying_agency_name {
+    type: string
+    sql: ${TABLE}."DEAL_BUYING_AGENCY_NAME" ;;
+  }
+
+  dimension: deal_name {
+    type: string
+    sql: ${TABLE}."DEAL_NAME" ;;
+  }
+
+  dimension: deal_type {
+    type: string
+    sql: ${TABLE}."DEAL_TYPE" ;;
+  }
+
+    dimension: excluded_networks {
+    type: string
+    sql: ${TABLE}."EXCLUDED_NETWORKS" ;;
+  }
+
+  dimension: excluded_ratings {
+    type: string
+    sql: ${TABLE}."EXCLUDED_RATINGS" ;;
+  }
+
+  dimension: frequency_capping {
+    type: string
+    sql: ${TABLE}."FREQUENCY_CAPPING" ;;
+  }
+
+  dimension: included_ratings {
+    type: string
+    sql: ${TABLE}."INCLUDED_RATINGS" ;;
+  }
+
+  dimension: insertion_order_name {
+    type: string
+    sql: ${TABLE}."INSERTION_ORDER_NAME" ;;
+  }
+  dimension: io_status {
+    type: string
+    sql: ${TABLE}."IO_STATUS" ;;
+  }
+
+  dimension: line_name {
+    type: string
+    sql: ${TABLE}."LINE_NAME" ;;
+  }
+
+  dimension: line_product_name {
+    type: string
+    sql: ${TABLE}."LINE_PRODUCT_NAME" ;;
+  }
+
   dimension: line_status {
     type: string
     sql: ${TABLE}."LINE_STATUS" ;;
@@ -257,11 +216,6 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."METRIC" ;;
   }
 
-  dimension: net_contract_value {
-    type: number
-    sql: ${TABLE}."NET_CONTRACT_VALUE" ;;
-  }
-
   dimension: primary_proposal_ind {
     type: string
     sql: ${TABLE}."PRIMARY_PROPOSAL_IND" ;;
@@ -270,11 +224,6 @@ view: addressable_bob_mockeddata {
   dimension: priority {
     type: string
     sql: ${TABLE}."PRIORITY" ;;
-  }
-
-  dimension: proposal_id {
-    type: string
-    sql: ${TABLE}."PROPOSAL_ID" ;;
   }
 
   dimension: sales_planner {
@@ -292,12 +241,7 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."STAGE" ;;
   }
 
-  dimension: suggested_price {
-    type: number
-    sql: ${TABLE}."SUGGESTED_PRICE" ;;
-  }
-
-  dimension: targeting {
+    dimension: targeting {
     type: string
     sql: ${TABLE}."TARGETING" ;;
   }
@@ -342,6 +286,60 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."Inventory Type" ;;
   }
 
+########## Impression/Universe Information for Deal ##########
+
+ dimension: contract_units {
+    type: number
+    sql: ${TABLE}."CONTRACT_UNITS" ;;
+  }
+
+  dimension: delivered_units {
+    type: number
+    sql: ${TABLE}."DELIVERED_UNITS" ;;
+  }
+
+  dimension: creative_size {
+    type: string
+    sql: ${TABLE}."CREATIVE_SIZE" ;;
+  }
+
+  dimension: deal_billing_agency_commission_pct {
+    type: number
+    sql: ${TABLE}."DEAL_BILLING_AGENCY_COMMISSION_PCT" ;;
+  }
+
+  dimension: deal_likelihood_pct {
+    type: number
+    sql: ${TABLE}."DEAL_LIKELIHOOD_PCT" ;;
+  }
+
+  dimension: households {
+    type: number
+    sql: ${TABLE}."HOUSEHOLDS" ;;
+  }
+
+########## Financial Information ##########
+
+  dimension: gross_contract_value {
+    type: number
+    sql: ${TABLE}."GROSS_CONTRACT_VALUE" ;;
+  }
+  dimension: line_contract_price {
+    type: number
+    sql: ${TABLE}."LINE_CONTRACT_PRICE" ;;
+  }
+
+  dimension: net_contract_value {
+    type: number
+    sql: ${TABLE}."NET_CONTRACT_VALUE" ;;
+  }
+  dimension: suggested_price {
+    type: number
+    sql: ${TABLE}."SUGGESTED_PRICE" ;;
+  }
+
+########## Measures ##########
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -360,7 +358,6 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."SUGGESTED_PRICE"* ${TABLE}."CONTRACT_UNITS" ;;
     value_format: "$#,##0.00"
   }
-
 
   measure: avg_creative_size{
     type: average
@@ -394,6 +391,9 @@ view: addressable_bob_mockeddata {
     sql: ${TABLE}."DELIVERED_UNITS" ;;
     value_format: "#,##0"
   }
+
+ ########## Top List Ranking Toggle ##########
+
   parameter: max_rank {
     type: number
   }
@@ -402,6 +402,8 @@ view: addressable_bob_mockeddata {
     type: number
     sql: {% parameter max_rank %} ;;
   }
+
+ ########## Gross vs Net Revenue Toggle ##########
 
   parameter: dimension_to_aggregate {
     type: unquoted
@@ -421,6 +423,8 @@ view: addressable_bob_mockeddata {
     sql: sum( ${TABLE}.{% parameter dimension_to_aggregate %});;
     value_format: "$#,##0.00"
   }
+
+########## Date Granularity Toggle ##########
 
   parameter: date_selector {
     type: string
