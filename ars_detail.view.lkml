@@ -190,6 +190,7 @@ view: ars_detail {
 
   measure: Total_Delivered_ImpressionsPercent{
     type: percent_of_total
+    hidden: yes
     sql:  ${Total_Delivered_Impressions}/${Total_Delivered_Impressions} ;;
     value_format: "0\%"
   }
@@ -200,6 +201,7 @@ view: ars_detail {
 
   measure: Avg_Ordered_Impressions{
     type:average
+    hidden: yes
     sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
   }
 

@@ -21,7 +21,9 @@ explore: cs_network {
   label: "CS Network Impressions"
 }
 
-explore: mock_car_data {}
+explore: mock_car_data {
+  hidden:  yes
+}
 
 explore: addressable_bob_mockeddata {
   label: "Book of Business"
