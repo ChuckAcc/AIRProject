@@ -185,7 +185,7 @@ view: ars_detail {
   measure: Total_Delivered_Impressions{
     type: sum
     sql:  ${TABLE}."DELIVERED_IMPRESSIONS" ;;
-    value_format: "#,##0"
+    value_format:"[>=1000000000]0.00,,,\"B\";[>=1000000]0.00,,\"M\";0.00,\"K\""
   }
 
   measure: Total_Delivered_ImpressionsPercent{
@@ -197,6 +197,7 @@ view: ars_detail {
   measure: Total_Ordered_Impressions{
     type: sum
     sql:  ${TABLE}."ORDERED_IMPRESSIONS" ;;
+    value_format:"[>=1000000000]0.00,,,\"B\";[>=1000000]0.00,,\"M\";0.00,\"K\""
   }
 
   measure: Avg_Ordered_Impressions{
@@ -217,7 +218,7 @@ view: ars_detail {
   measure: delivered_impressions_runningTotal{
     type: running_total
     sql:  ${Total_Delivered_Impressions} ;;
-    value_format: "#,##0"
+    value_format:"[>=1000000000]0.00,,,\"B\";[>=1000000]0.00,,\"M\";0.00,\"K\""
   }
 
   measure: Reach_runningTotal{

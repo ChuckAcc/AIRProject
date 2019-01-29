@@ -11,7 +11,7 @@ view: ars_summary {
 
   dimension: io_id_custom2 {
     type: string
-    label: "Insertion Order"
+    label: "Insertion Order ID"
     sql: LISTAGG(DISTINCT ${TABLE}."IO_ID",', ') ;;
   }
 
@@ -86,43 +86,50 @@ view: ars_summary {
 
   dimension: Advertiser_Name2{
     type: string
-    label: "Advertiser"
-    hidden:  yes
+    label: "Deal Advertiser"
+    #hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Advertiser_Name,', ');;
   }
 
   dimension: Agency_Name2 {
     type: string
-    label: "Agency"
-    hidden:  yes
+    label: "Deal Agency"
+    #hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Agency_Name,', ') ;;
   }
 
   dimension: IO_Name2 {
     type: string
     label: "Insertion Order Name"
-    hidden:  yes
+    #hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.IO_Name,', ') ;;
   }
 
   dimension: Deal_ID2 {
     type: string
-    label: "Deal Number"
-    hidden:  yes
+    label: "Deal ID"
+    #hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Deal_ID,', ') ;;
   }
 
   dimension: Target2 {
     type: string
-    label: "IO Target"
-    hidden:  yes
+    label: "Targeting"
+    #hidden:  yes
     sql: LISTAGG(DISTINCT ${TABLE}.Target,', ') ;;
   }
 
   dimension: flight_concat2 {
     type: string
-    label: "Flight Period"
-    hidden:  yes
+    label: "Deal Flight Period"
+    #hidden:  yes
+    sql:  LISTAGG(DISTINCT ${TABLE}."Flight_Concat",', ');;
+  }
+
+  dimension: flight_concat3 {
+    type: string
+    label: "Insertion Order Flight Period"
+    #hidden:  yes
     sql:  LISTAGG(DISTINCT ${TABLE}."Flight_Concat",', ');;
   }
 
